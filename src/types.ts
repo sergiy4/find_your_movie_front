@@ -10,5 +10,5 @@ export interface InputProps extends InputErrorProps {
   id?: string;
   type?: 'text' | 'email' | 'password';
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: string | boolean;
 }
