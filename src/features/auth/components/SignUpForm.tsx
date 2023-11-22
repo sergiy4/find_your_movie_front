@@ -3,8 +3,10 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSignUpMutation } from '../authApi/authApi';
 import FormInput from '../../../components/FormInput';
+import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 
 const SignUpForm = () => {
+  let errorMessage;
   const methods = useForm<PersonAuthType>({
     resolver: zodResolver(personAuthSchema),
   });
@@ -17,6 +19,7 @@ const SignUpForm = () => {
 
   if (isError) {
     console.log(error);
+    errorMessage = getQueryErrorMessage(error);
   } else if (isSuccess) {
     // TODO: redirect on login page
     console.log(data);

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 const usePersist = (): [boolean, () => void] => {
   // Get flag from local storage
-  const adminPanelPersist = localStorage.getItem('admin_panel_persist');
+  const adminPanelPersist = localStorage.getItem('FYM_persist');
 
   // If the flag exists, then we return true, if not, false
   const persistState = adminPanelPersist
@@ -16,7 +16,7 @@ const usePersist = (): [boolean, () => void] => {
 
   useEffect(() => {
     // Set the value of the flag
-    localStorage.setItem('admin_panel_persist', JSON.stringify(persist));
+    localStorage.setItem('FYM_persist', JSON.stringify(persist));
   }, [persist]);
 
   return [persist, togglePersist];

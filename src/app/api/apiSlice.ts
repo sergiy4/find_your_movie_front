@@ -10,7 +10,7 @@ import { RootState } from '../store';
 import { UserInfo } from '../../features/auth/types';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3500/',
+  baseUrl: 'http://localhost:3000/',
   credentials: 'include',
   // set the access token in the cookie in the http header
   prepareHeaders: (headers, { getState }) => {

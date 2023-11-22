@@ -7,8 +7,10 @@ import { useDispatch } from 'react-redux';
 import usePersist from '../hooks/usePersist';
 import FormInput from '../../../components/FormInput';
 import { useNavigate } from 'react-router-dom';
+import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 
 const LoginForm = () => {
+  let errorMessage;
   const [persist, togglePersist] = usePersist();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ const LoginForm = () => {
     formState: { errors },
   } = methods;
 
-  const [login, {}] = useLoginMutation();
+  const [login, { isError, error, isSuccess }] = useLoginMutation();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -33,12 +35,19 @@ const LoginForm = () => {
 
       // TODO: clear form
       // TODO: redirect to main page
-      // navigate('/')
+      navigate('/');
       // methods.reset();
     } catch (err) {
       console.log(err);
     }
   });
+
+  if (isError) {
+    console.log(error);
+    errorMessage = getQueryErrorMessage(error);
+  } else if (isSuccess) {
+    // TODO: redirect on login page
+  }
 
   return (
     <>
