@@ -1,10 +1,4 @@
-export interface Movie {
-  _id: string;
-  name: string;
-  isMovie: boolean;
-  tmdb_id: number;
-  backdrop_path: string;
-}
+import { Movie } from '../movie/types';
 
 export interface Collection {
   _id: string;
