@@ -1,5 +1,10 @@
+import CurrentCollection from '../components/CurrentCollection';
 const Collection = () => {
-  return <>COLLECTION</>;
+  return (
+    <>
+      <CurrentCollection />
+    </>
+  );
 };
 
 export default Collection;

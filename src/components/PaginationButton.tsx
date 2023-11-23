@@ -3,7 +3,7 @@ import { addUrlParameter } from '../utils/addUrlParameter';
 
 interface PaginationButtonProps {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: (newState: string) => void;
   setSearchParams: SetURLSearchParams;
 }
 const PaginationButton = ({
@@ -12,10 +12,10 @@ const PaginationButton = ({
   setSearchParams,
 }: PaginationButtonProps) => {
   const setCurrentPage = () => {
-    const urlWithPageParameter = addUrlParameter('page', page.toString(10));
+    // const urlWithPageParameter = addUrlParameter('page', page.toString(10));
 
-    setSearchParams(urlWithPageParameter);
-    setPage(page);
+    // setSearchParams(urlWithPageParameter);
+    setPage(page.toString(10));
   };
 
   return <button onClick={() => setCurrentPage()}>{page}</button>;

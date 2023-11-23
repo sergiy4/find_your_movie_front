@@ -3,7 +3,8 @@ import PaginationButton from './PaginationButton';
 import { useSearchParams } from 'react-router-dom';
 
 interface PaginationProps extends usePaginationArgs {
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  // setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: (newState: string) => void;
 }
 
 const Pagination = ({

@@ -1,4 +1,5 @@
+import CollectionList from '../components/CollectionList';
 const Collections = () => {
-  return <>COLLECTIONSSS</>;
+  return <CollectionList />;
 };
 export default Collections;

@@ -34,10 +34,10 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
     }),
 
     getCollection: builder.query<getCollectionResult, getCollectionParams>({
-      query: ({ collectionID, page, pageSize, search }) => ({
+      query: ({ collectionID, page, pageSize, movie }) => ({
         url: `/collections/${collectionID}`,
         method: 'GET',
-        params: { page, pageSize, search },
+        params: { page, pageSize, movie },
       }),
 
       providesTags: (result) => {
@@ -74,7 +74,7 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
 
     deleteCollection: builder.mutation<{ data: { message: string } }, string>({
       query: (id) => ({
-        url: `/collections${id}`,
+        url: `/collections/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Collection'],

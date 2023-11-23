@@ -24,12 +24,14 @@ export interface PaginationQueryParams {
   pageSize?: number;
 }
 
-export interface getCollectionsQueryParams extends PaginationQueryParams {
+export interface getCollectionsQueryParams {
   search?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 export interface getCollectionParams extends PaginationQueryParams {
-  search?: string;
+  movie?: string;
   collectionID: string;
 }
 
@@ -38,6 +40,7 @@ export interface getCollectionResult {
   collectionName: string;
   isPrivate: boolean;
   movies: Movie[];
+  totalPageCount: number;
 }
 
 export interface CollectionCredential {
