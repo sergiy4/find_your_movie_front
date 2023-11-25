@@ -1,0 +1,37 @@
+@use "../abstracts/" as *;
+
+.around_form {
+    @include display_flex(column, flex-start, flex-end);
+
+    height: 80%;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+
+    .title_form {
+        align-self: center;
+        color: $black-primary;
+    }
+    .add_movie_form {
+        height: 60%;
+        padding: 20px 0;
+        width: 100%;
+        overflow: auto;
+        color: $black-primary;
+        @include display_flex(column, center, flex-start);
+
+        .overflow_form {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.add_movie_form {
+    .form_item {
+        width: 100%;
+        @include display_flex(row-reverse, space-between, center);
+        label {
+            overflow: hidden;
+        }
+    }
+}

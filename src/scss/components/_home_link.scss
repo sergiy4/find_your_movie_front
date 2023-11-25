@@ -1,0 +1,16 @@
+@use "../abstracts/" as *;
+.line_mask_menu {
+    overflow: hidden;
+
+    @include adaptiveValue("height", 98, 50);
+
+    .wrapper_div {
+        cursor: pointer;
+
+        @include adaptiveValue("height", 300, 150);
+        @include adaptiveValue("font-size", 100, 50);
+        @include display_flex(column, flex-end, flex-end);
+
+        line-height: 95%;
+    }
+}

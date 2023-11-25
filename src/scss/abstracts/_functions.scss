@@ -1,0 +1,4 @@
+@use 'sass:math';
+@function toRem($size) {
+    @return math.div($size, 16) * 1rem;
+}

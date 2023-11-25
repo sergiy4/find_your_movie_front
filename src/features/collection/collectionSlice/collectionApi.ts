@@ -11,7 +11,7 @@ import {
 
 export const collectionApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllCurrentUserCollections: builder.query<
+    getCurrentUserCollections: builder.query<
       getCollectionsQueryResult,
       getCollectionsQueryParams
     >({
@@ -31,6 +31,14 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
           ];
         } else return [{ type: 'Collection', id: 'LIST' }];
       },
+    }),
+
+    GetCurrentUserAllCollections: builder.query<Collection[], void>({
+      query: () => ({
+        url: '/collections/all',
+        method: 'GET',
+      }),
+      providesTags: ['Collection'],
     }),
 
     getCollection: builder.query<getCollectionResult, getCollectionParams>({
@@ -83,7 +91,8 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetAllCurrentUserCollectionsQuery,
+  useGetCurrentUserAllCollectionsQuery,
+  useGetCurrentUserCollectionsQuery,
   useGetCollectionQuery,
   useCreateNewCollectionMutation,
   useUpdateCollectionMutation,

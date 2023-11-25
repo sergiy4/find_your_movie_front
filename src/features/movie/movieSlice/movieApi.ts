@@ -18,23 +18,19 @@ const movieSlice = apiSlice.injectEndpoints({
       },
     }),
 
-    addMovieToCollection: builder.mutation<
-      Collection,
+    addMovieToCollections: builder.mutation<
+      { data: { message: string } },
       AddMovieToCollectionParams
     >({
-      query: ({ name, backdrop_path, isMovie, tmdb_id, collectionID }) => ({
-        url: `/collections/${collectionID}/movies`,
+      query: ({ movie, collectionIDs }) => ({
+        url: `/movies`,
         method: 'POST',
         body: {
-          name,
-          backdrop_path,
-          isMovie,
-          tmdb_id,
+          ...movie,
+          collectionIDs,
         },
       }),
-      invalidatesTags: (result, error, arg) => {
-        return [{ type: 'Collection', id: arg.collectionID }];
-      },
+      invalidatesTags: ['Collection'],
     }),
 
     deleteMovieFromCollection: builder.mutation<
@@ -54,6 +50,6 @@ const movieSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetMovieQuery,
-  useAddMovieToCollectionMutation,
+  useAddMovieToCollectionsMutation,
   useDeleteMovieFromCollectionMutation,
 } = movieSlice;

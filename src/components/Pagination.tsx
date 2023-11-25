@@ -19,7 +19,6 @@ const Pagination = ({
     totalPageCount,
   });
   console.log(paginationRange);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   if (!paginationRange) {
     return null;
@@ -30,20 +29,13 @@ const Pagination = ({
 
   return (
     <>
-      <section>
+      <section className="pagination_section">
         {paginationRange.map((page) => {
           if (typeof page === 'string') {
             return <div key={page}>...</div>;
           }
 
-          return (
-            <PaginationButton
-              page={page}
-              key={page}
-              setPage={setPage}
-              setSearchParams={setSearchParams}
-            />
-          );
+          return <PaginationButton page={page} key={page} setPage={setPage} />;
         })}
       </section>
     </>

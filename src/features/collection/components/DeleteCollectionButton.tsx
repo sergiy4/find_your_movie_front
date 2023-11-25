@@ -11,7 +11,12 @@ const DeleteButton = ({ id }: { id: string }) => {
 
   return (
     <>
-      <button onClick={() => deleteCollection(id)}>DELETE</button>;
+      <button
+        className="btn delete_collection_btn"
+        onClick={() => deleteCollection(id)}
+      >
+        DELETE
+      </button>
       {errorMessage ? <p>{errorMessage}</p> : null}
     </>
   );

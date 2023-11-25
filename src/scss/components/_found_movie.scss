@@ -1,0 +1,63 @@
+@use "../abstracts/" as *;
+
+.card {
+    background-color: $white-primary;
+    border-radius: 5px;
+
+    @include display_flex(row, space-between, center);
+
+    height: 100%;
+    width: 100%;
+    position: relative;
+    @media (max-width: $tablet) {
+        width: 100%;
+        @include display_flex(column, center, center, 30px);
+    }
+
+    &_img_part {
+        cursor: pointer;
+        flex: 0 0 330px;
+        height: 100%;
+
+        img {
+            border-radius: 5px;
+            display: block;
+            max-width: 100%;
+        }
+        @media (max-width: $tablet) {
+            width: 70%;
+        }
+        @media (max-width: $mobile) {
+            width: 100%;
+        }
+    }
+    &_info_part {
+        margin-right: auto;
+
+        height: 100%;
+        box-sizing: border-box;
+        font-family: $main-font;
+        @include adaptiveValue("font-size", 20, 16);
+        @include adaptiveValue("padding", 20, 7);
+        ul {
+            list-style: none;
+        }
+        p {
+            color: $black-primary;
+            font-family: $second-font;
+        }
+        .info_movie_card {
+            color: $black-primary;
+            .description {
+                color: $black-primary;
+                font-family: $second-font;
+            }
+        }
+        .more_link {
+            cursor: pointer;
+            font-family: $second-font;
+            color: $orange-accent;
+            font-weight: bold;
+        }
+    }
+}

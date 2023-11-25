@@ -8,8 +8,10 @@ import MovieCard from '../../movie/components/MovieCard';
 import Pagination from '../../../components/Pagination';
 
 const CurrentCollection = () => {
+  let load;
   let content;
   let pagination;
+  let title;
   const { collectionID } = useParams();
   const [movie, setMovie] = useSearchParamsState('movie', '');
   const [page, setPage] = useSearchParamsState('page', '1');
@@ -22,12 +24,14 @@ const CurrentCollection = () => {
     });
 
   if (isLoading || isFetching) {
-    content = <Loader />;
+    load = <Loader />;
   } else if (isError) {
     let errorMessage = getQueryErrorMessage(error);
     content = <p>{errorMessage}</p>;
   } else if (isSuccess) {
-    content = data.movies.map((movie) => <MovieCard key={movie._id} />);
+    content = data.movies.map((movie) => (
+      <MovieCard {...movie} key={movie._id} />
+    ));
     pagination = (
       <Pagination
         currentPage={parseInt(page, 10)}
@@ -36,13 +40,25 @@ const CurrentCollection = () => {
         totalPageCount={data.totalPageCount}
       />
     );
+    title = data.collectionName;
   }
 
   return (
     <>
-      <DebounceInput setSearch={setMovie} search={movie} />
-      {content}
-      {pagination}
+      <main className="collection_page">
+        <section className="collection_page_header_container">
+          <header className="title_collection">
+            <h1 className="title">{title}</h1>
+            {/* {editBtn} */}
+          </header>
+          <DebounceInput setSearch={setMovie} search={movie} />
+        </section>
+        <section className="collection_page_container">
+          <section className="movie_grid">{content}</section>
+          {load}
+          <section>{pagination}</section>
+        </section>
+      </main>
     </>
   );
 };

@@ -35,7 +35,7 @@ const LoginForm = () => {
 
       // TODO: clear form
       // TODO: redirect to main page
-      navigate('/');
+
       // methods.reset();
     } catch (err) {
       console.log(err);
@@ -46,39 +46,76 @@ const LoginForm = () => {
     console.log(error);
     errorMessage = getQueryErrorMessage(error);
   } else if (isSuccess) {
-    // TODO: redirect on login page
+    navigate('/');
   }
 
   return (
     <>
-      <FormProvider {...methods}>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <FormInput
-            label="Username"
-            placeholder="Username"
-            id={'username'}
-            type="text"
-            name="username"
-            errors={errors}
-          />
-          <FormInput
-            label="Password"
-            placeholder="Password"
-            id={'password'}
-            type="password"
-            name="password"
-            errors={errors}
-          />
-          <button onClick={onSubmit}>Login</button>
-          <label htmlFor="persist">Trust this device?</label>
-          <input
-            id="persist"
-            type="checkbox"
-            onChange={togglePersist}
-            checked={persist}
-          />
-        </form>
-      </FormProvider>
+      <div className="box_form">
+        <FormProvider {...methods}>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div className="form_inputs">
+              <FormInput
+                label="Username"
+                placeholder="Username"
+                id={'username'}
+                type="text"
+                name="username"
+                errors={errors}
+              />
+              <FormInput
+                label="Password"
+                placeholder="Password"
+                id={'password'}
+                type="password"
+                name="password"
+                errors={errors}
+              />
+
+              <div className="login_bottom_section">
+                <div>
+                  <label htmlFor="persist" className="form__persist">
+                    Trust This Device
+                  </label>
+                  <input
+                    className="form__checkbox"
+                    id="persist"
+                    type="checkbox"
+                    onChange={togglePersist}
+                    checked={persist}
+                  />
+                </div>
+
+                <button className="btn login_btn" onClick={onSubmit}>
+                  Log in
+                </button>
+                <section>
+                  {errorMessage ? (
+                    <p className="form_message error"> {errorMessage}</p>
+                  ) : null}
+                </section>
+              </div>
+            </div>
+          </form>
+        </FormProvider>
+
+        <footer>
+          <div className="footer_content">
+            <hr />
+            <div>
+              <p>DON'T HAVE AN ACCOUNT</p>
+              <button
+                className="btn signup_btn"
+                onClick={() => {
+                  navigate('/signup');
+                }}
+              >
+                Sign ups
+              </button>
+            </div>
+          </div>
+        </footer>
+      </div>
     </>
   );
 };

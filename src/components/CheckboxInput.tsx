@@ -16,7 +16,7 @@ export const CheckboxInput = ({
           {label}
         </label>
         <input
-          checked={typeof defaultValue === 'boolean' ? defaultValue : true}
+          // checked={typeof defaultValue === 'boolean' ? defaultValue : false}
           type="checkbox"
           {...register(name)}
         />

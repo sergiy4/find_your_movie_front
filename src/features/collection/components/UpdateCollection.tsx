@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import { Collection } from '../types';
 
-const CreateCollectionForm = ({ _id, isPrivate, name }: Collection) => {
+const UpdateCollectionForm = ({ _id, isPrivate, name }: Collection) => {
   let errorMessage;
   let successMessage;
 
@@ -66,4 +66,4 @@ const CreateCollectionForm = ({ _id, isPrivate, name }: Collection) => {
   );
 };
 
-export default CreateCollectionForm;
+export default UpdateCollectionForm;

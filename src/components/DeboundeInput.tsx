@@ -34,7 +34,14 @@ DebounceInputProps) => {
     debouncedSendRequest(value);
   };
 
-  return <input onChange={onChange} max={100} value={value} />;
+  return (
+    <input
+      className="debounced_input"
+      onChange={onChange}
+      max={100}
+      value={value}
+    />
+  );
 };
 
 export default DebounceInput;

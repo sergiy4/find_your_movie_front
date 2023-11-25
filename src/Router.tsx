@@ -8,6 +8,7 @@ import Login from './features/auth/pages/Login';
 import SignUp from './features/auth/pages/SignUp';
 import Movie from './features/movie/pages/Movie';
 import Layout from './components/Layout';
+import FoundMoviePage from './features/findYourMovie/pages/FoundMoviePage';
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const Router = () => {
           element: <FindYourMovie />,
         },
         {
+          path: 'FYM/movie',
+          element: <FoundMoviePage />,
+        },
+        {
           path: 'collections',
           element: <Collections />,
         },
@@ -42,12 +47,12 @@ const Router = () => {
           element: <Collection />,
         },
         {
-          path: 'randomCollections',
-          element: <RandomCollection />,
+          path: 'collections/:collectionID/movies/:movieID',
+          element: <Movie />,
         },
         {
-          path: 'movie/:movieID',
-          element: <Movie />,
+          path: 'randomCollections',
+          element: <RandomCollection />,
         },
       ],
     },

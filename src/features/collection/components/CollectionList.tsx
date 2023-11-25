@@ -1,11 +1,17 @@
+import { motion } from 'framer-motion';
+import { MoveTextAnimation } from '../../../utils/anim';
 import CollectionItem from './CollectionItem';
-import { useGetAllCurrentUserCollectionsQuery } from '../collectionSlice/collectionApi';
+import { useGetCurrentUserCollectionsQuery } from '../collectionSlice/collectionApi';
 import Pagination from '../../../components/Pagination';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import DebounceInput from '../../../components/DeboundeInput';
 import { useSearchParamsState } from '../../../hooks/useSearchParamsState';
+import Loader from '../../../components/Loader';
+import Modal from '../../../components/Modal';
+import CreateCollectionForm from './CreateCollectionForm';
 
 const CollectionList = () => {
+  let load;
   let collections;
   let pagination;
   let errorMessage;
@@ -13,10 +19,10 @@ const CollectionList = () => {
   const [page, setPage] = useSearchParamsState('page', '1');
 
   const { currentData, isSuccess, isError, error, isFetching, isLoading } =
-    useGetAllCurrentUserCollectionsQuery({ search, page: parseInt(page, 10) });
+    useGetCurrentUserCollectionsQuery({ search, page: parseInt(page, 10) });
 
   if (isFetching || isLoading) {
-    // loader = <Loader />;
+    load = <Loader />;
   } else if (isError) {
     console.log(error);
     errorMessage = getQueryErrorMessage(error);
@@ -42,9 +48,33 @@ const CollectionList = () => {
 
   return (
     <>
-      <DebounceInput setSearch={setSearch} search={search} />
-      {collections}
-      {pagination}
+      <main id="my_collection" className="collections_page">
+        <section className="collections_page_title_container ">
+          <header className="title_my_collections">
+            <motion.div className="line_mask">
+              <motion.div
+                className="wrapper"
+                variants={MoveTextAnimation}
+                custom={0}
+                initial="hidden"
+                animate="showCantHover"
+              >
+                <h1>MY COLLECTIONS</h1>
+              </motion.div>
+            </motion.div>
+
+            <Modal label="CREATE COLLECTION">
+              <CreateCollectionForm />
+            </Modal>
+          </header>
+          <DebounceInput setSearch={setSearch} search={search} />
+        </section>
+        <section className="collections_page_container ">
+          <section className="collection_grid">{collections}</section>
+          {load}
+          <section>{pagination}</section>
+        </section>
+      </main>
     </>
   );
 };

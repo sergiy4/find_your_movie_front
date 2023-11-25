@@ -1,0 +1,24 @@
+@use "../abstracts/" as *;
+
+.slide-in,
+.slide-out {
+    background-color: $white-primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+
+    @include display_flex(row, center, center);
+
+    h1 {
+        @include adaptiveValue("font-size", 300, 100);
+        font-family: $main-font;
+
+        @include adaptiveValue("letter-spacing", 50, 20);
+    }
+    .text {
+        @include display_flex(row, center, center);
+    }
+}

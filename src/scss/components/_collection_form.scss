@@ -1,0 +1,8 @@
+@use "../abstracts/" as *;
+
+.collection_form {
+    // background-color: aqua;
+    font-family: $main-font;
+    color: $black-primary;
+    width: 100%;
+}

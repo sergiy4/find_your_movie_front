@@ -1,0 +1,110 @@
+@use "../abstracts/" as *;
+.debounced_input {
+    background-color: $black-primary;
+    border: none;
+
+    outline: none;
+    border-bottom: $white-primary 2px solid;
+    color: $white-primary;
+    width: 60%;
+    margin-top: 50px;
+    align-self: center;
+
+    @include adaptiveValue("height", 40, 30);
+    font-family: $main-font;
+    @include adaptiveValue("font-size", 40, 30);
+
+    @media (max-width: $tablet) {
+        width: 100%;
+    }
+}
+
+// FYM INPUT
+.fym_input {
+    height: 130px;
+    width: 100%;
+
+    @include display_flex(row, center, center);
+    position: relative;
+
+    .around_input {
+        width: 100%;
+        background-color: $white-primary;
+        @include adaptiveValue("padding", 20, 10);
+        border-radius: 5px;
+        height: auto;
+        @include display_flex(row, center, center);
+
+        textarea {
+            font-family: $second-font;
+            background-color: $white-primary;
+
+            @include adaptiveValue("max-height", 90, 40);
+            box-sizing: border-box;
+            width: 100%;
+            resize: none;
+            overflow-y: hidden;
+            border: none;
+
+            &:focus {
+                outline: 0;
+            }
+
+            @media (max-width: $tablet) {
+                @include adaptiveValue("max-height", 100, 40);
+            }
+            @media (max-width: $mobile) {
+                @include adaptiveValue("max-height", 100, 20);
+            }
+        }
+    }
+
+    // select {
+    //     font-family: $second-font;
+
+    //     border-radius: 5px;
+    //     outline: 0;
+    //     @include adaptiveValue("height", 50, 25);
+
+    //     option {
+    //         @include adaptiveValue("height", 50, 25);
+    //         outline: 0;
+    //         border: none;
+    //     }
+    // }
+}
+
+// FORMS INPUT
+.form_input_box {
+    width: 100%;
+    position: relative;
+    @include display_flex(column, space-between);
+
+    .input_info {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    input {
+        font-family: $second-font;
+        box-sizing: border-box;
+        @include adaptiveValue("font-size", 20, 16);
+        @include adaptiveValue("height", 50, 30);
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+
+        &:focus {
+            border-color: transparent;
+            outline: none;
+            border: 1.3px solid rgba(0, 0, 0, 1);
+        }
+    }
+    .error_section {
+        @include adaptiveValue("font-size", 20, 15);
+        @include adaptiveValue("height", 40, 30);
+
+        color: rgb(251, 101, 101);
+    }
+}

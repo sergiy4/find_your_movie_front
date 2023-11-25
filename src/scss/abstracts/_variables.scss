@@ -1,0 +1,47 @@
+@use '../abstracts/functions';
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200;300;400&display=swap');
+
+
+
+
+$white-primary:#efeae3 ;
+$black-primary:#0d0c0a;
+
+$orange-accent:#f48c78;
+$yellow-secondary:#fadaa3;
+$gray-secondary:#d3d3cf;
+$dark-gray:#5f5f5f;
+$green-secondary:#73bfb4;
+$green-success:#5cc582;
+$red :#ff5c5c;
+
+// Шрифти
+// ,
+$main-font: 'Bebas Neue',sans-serif;
+$second-font: 'Montserrat', sans-serif;
+
+// 'Zilla Slab', serif;
+$minWidth: 320;
+$maxWidth: 1920;
+
+// ширина обмежуючого контейнера
+$maxWidthContainer: 1900;
+
+$containerPadding: 30;
+
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// break-points
+$pc: $containerWidth+px;
+$tablet: 992px;
+$mobile: 767px;
+$mobileSmall: 479px;
+
+// 1 = чуйність (нема брейкпоїнтів)
+// 2 = по брейк поїнтах
+
+$responsiveType:1;
+
+
+

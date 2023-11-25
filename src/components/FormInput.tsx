@@ -15,16 +15,19 @@ const FormInput = ({
   const { register } = form;
 
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
+    <div className="form_input_box">
+      <label htmlFor={id} className="form_label">
+        {label}
+      </label>
       <input
+        className="form_input"
         id={id}
         type={type}
         placeholder={placeholder}
         {...register(name)}
         defaultValue={defaultValue}
       />
-      <div>
+      <div className="error_section">
         <InputErrorMessage errors={errors} name={name} />
       </div>
     </div>

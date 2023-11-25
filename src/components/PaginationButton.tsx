@@ -1,24 +1,26 @@
-import { SetURLSearchParams } from 'react-router-dom';
-import { addUrlParameter } from '../utils/addUrlParameter';
+import { useParams } from 'react-router-dom';
 
 interface PaginationButtonProps {
   page: number;
   setPage: (newState: string) => void;
-  setSearchParams: SetURLSearchParams;
 }
-const PaginationButton = ({
-  page,
-  setPage,
-  setSearchParams,
-}: PaginationButtonProps) => {
-  const setCurrentPage = () => {
-    // const urlWithPageParameter = addUrlParameter('page', page.toString(10));
+const PaginationButton = ({ page, setPage }: PaginationButtonProps) => {
+  const urlPage = new URLSearchParams(location.href).get('page');
 
-    // setSearchParams(urlWithPageParameter);
+  const setCurrentPage = () => {
     setPage(page.toString(10));
   };
 
-  return <button onClick={() => setCurrentPage()}>{page}</button>;
+  return (
+    <button
+      className={`btn pagination_btn  ${
+        urlPage === page.toString(10) ? 'current' : ''
+      }`}
+      onClick={() => setCurrentPage()}
+    >
+      {page}
+    </button>
+  );
 };
 
 export default PaginationButton;
