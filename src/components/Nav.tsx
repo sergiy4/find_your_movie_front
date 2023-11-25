@@ -107,7 +107,7 @@ const Nav = ({ isActiveMenu, setIsActiveMenu }: NavProps) => {
             <div
               className="line_mask_menu"
               onClick={() => {
-                navigate('/randomCollections/1');
+                navigate('/randomCollections');
                 setIsActiveMenu(false);
               }}
             >

@@ -12,6 +12,7 @@ const FoundMovie = ({
   first_air_date,
   backdrop_path,
   poster_path,
+  id,
 }: DetailMovie) => {
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BASIC_IMG_URL;
@@ -77,6 +78,7 @@ const FoundMovie = ({
                 first_air_date,
                 backdrop_path,
                 poster_path,
+                id,
               }}
             />
           </Modal>

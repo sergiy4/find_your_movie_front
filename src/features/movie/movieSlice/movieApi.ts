@@ -4,7 +4,6 @@ import {
   AddMovieToCollectionParams,
   DeleteMovieFromCollectionParams,
 } from '../types';
-import { Collection } from '../../collection/types';
 
 const movieSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -23,7 +22,7 @@ const movieSlice = apiSlice.injectEndpoints({
       AddMovieToCollectionParams
     >({
       query: ({ movie, collectionIDs }) => ({
-        url: `/movies`,
+        url: `/collections/movies`,
         method: 'POST',
         body: {
           ...movie,

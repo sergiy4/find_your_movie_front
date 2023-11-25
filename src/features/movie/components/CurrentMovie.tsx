@@ -1,8 +1,8 @@
 import { DetailMovie } from '../types';
-
+import { htmlDecode } from '../../../utils/htmlDecode';
 const CurrentMovie = (movie: DetailMovie) => {
-  const baseUrl = import.meta.env.BASIC_IMG_URL;
-  const movieBackgroundImgUrl = movie?.backdrop_path;
+  const baseUrl = import.meta.env.VITE_BASIC_IMG_URL;
+  const movieBackgroundImgUrl = htmlDecode(movie?.backdrop_path!);
   const genresString = movie?.genres?.map((item) => item.name).join(', ');
   const creatorsString = movie?.created_by?.map((item) => item.name).join(', ');
 

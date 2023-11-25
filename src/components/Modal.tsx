@@ -4,9 +4,10 @@ import ModalWrapper from './ModalWrapper';
 interface ModalProps {
   children: ReactNode;
   label: string;
+  disabled?: boolean;
 }
 
-const Modal = ({ children, label }: ModalProps) => {
+const Modal = ({ children, label, disabled }: ModalProps) => {
   console.log('Modal');
   const [open, setOpen] = useState(false);
 
@@ -17,6 +18,7 @@ const Modal = ({ children, label }: ModalProps) => {
   return (
     <>
       <button
+        disabled={disabled}
         className="btn create_collection_btn"
         onClick={(e) => {
           e.stopPropagation();

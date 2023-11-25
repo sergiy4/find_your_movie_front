@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { MoveTextAnimation } from '../../../utils/anim';
 import CollectionItem from './CollectionItem';
-import { useGetCurrentUserCollectionsQuery } from '../collectionSlice/collectionApi';
+import { useGetRandomCollectionsQuery } from '../collectionSlice/collectionApi';
 import Pagination from '../../../components/Pagination';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import DebounceInput from '../../../components/DeboundeInput';
@@ -10,16 +10,16 @@ import Loader from '../../../components/Loader';
 import Modal from '../../../components/Modal';
 import CreateCollectionForm from './CreateCollectionForm';
 
-const CollectionList = () => {
+const RandomCollectionList = () => {
   let load;
   let collections;
   let pagination;
-
+  let errorMessage;
   const [search, setSearch] = useSearchParamsState('search', '');
   const [page, setPage] = useSearchParamsState('page', '1');
 
   const { currentData, isSuccess, isError, error, isFetching, isLoading } =
-    useGetCurrentUserCollectionsQuery({ search, page: parseInt(page, 10) });
+    useGetRandomCollectionsQuery({ search, page: parseInt(page, 10) });
 
   if (isFetching || isLoading) {
     load = <Loader />;
@@ -59,13 +59,9 @@ const CollectionList = () => {
                 initial="hidden"
                 animate="showCantHover"
               >
-                <h1>MY COLLECTIONS</h1>
+                <h1>RANDOM COLLECTIONS</h1>
               </motion.div>
             </motion.div>
-
-            <Modal label="CREATE COLLECTION">
-              <CreateCollectionForm />
-            </Modal>
           </header>
           <DebounceInput setSearch={setSearch} search={search} />
         </section>
@@ -79,4 +75,4 @@ const CollectionList = () => {
   );
 };
 
-export default CollectionList;
+export default RandomCollectionList;

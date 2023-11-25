@@ -32,6 +32,27 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
         } else return [{ type: 'Collection', id: 'LIST' }];
       },
     }),
+    getRandomCollections: builder.query<
+      getCollectionsQueryResult,
+      getCollectionsQueryParams
+    >({
+      query: ({ page, pageSize, search }) => ({
+        url: '/collections/randomCollections',
+        method: 'GET',
+        params: { page, pageSize, search },
+      }),
+      providesTags: (result) => {
+        if (result) {
+          return [
+            { type: 'Collection', id: 'LIST' },
+            ...result.collections.map((collections) => ({
+              type: 'Collection' as const,
+              id: collections._id,
+            })),
+          ];
+        } else return [{ type: 'Collection', id: 'LIST' }];
+      },
+    }),
 
     GetCurrentUserAllCollections: builder.query<Collection[], void>({
       query: () => ({
@@ -70,7 +91,7 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
 
     updateCollection: builder.mutation<Collection, UpdateCollectionCredential>({
       query: ({ isPrivate, name, collectionID }) => ({
-        url: `/collections${collectionID}`,
+        url: `/collections/${collectionID}`,
         method: 'PATCH',
         body: {
           name,
@@ -97,4 +118,5 @@ export const {
   useCreateNewCollectionMutation,
   useUpdateCollectionMutation,
   useDeleteCollectionMutation,
+  useGetRandomCollectionsQuery,
 } = collectionApiSlice;

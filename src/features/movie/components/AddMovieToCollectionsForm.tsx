@@ -14,6 +14,7 @@ interface AddMovieToCollectionFormProps {
 const AddMovieToCollectionForm = ({ movie }: AddMovieToCollectionFormProps) => {
   console.log('FORM');
   let movieObj = getMovieObjForRequest(movie);
+  console.log(movieObj);
   const [selectedCollection, setSelectedCollection] = useState<string[]>([]);
   let content;
   let errorMessage;
@@ -68,7 +69,7 @@ const AddMovieToCollectionForm = ({ movie }: AddMovieToCollectionFormProps) => {
           movie={movieObj}
           selectedCollection={selectedCollection}
         />
-        <Modal>
+        <Modal label="CREATE COLLECTION">
           <CreateCollectionForm />
         </Modal>
       </section>

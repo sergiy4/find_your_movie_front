@@ -5,9 +5,18 @@ import FormInput from '../../../components/FormInput';
 import { CollectionSchema, CollectionSchemaType } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
-import { Collection } from '../types';
 
-const UpdateCollectionForm = ({ _id, isPrivate, name }: Collection) => {
+interface UpdateCollectionFormProps {
+  _id: string;
+  isPrivate: boolean;
+  name: string;
+}
+
+const UpdateCollectionForm = ({
+  _id,
+  isPrivate,
+  name,
+}: UpdateCollectionFormProps) => {
   let errorMessage;
   let successMessage;
 
@@ -58,7 +67,7 @@ const UpdateCollectionForm = ({ _id, isPrivate, name }: Collection) => {
             defaultValue={isPrivate}
           />
           <button disabled={isLoading} onClick={onSubmit}>
-            Create
+            SAVE
           </button>
         </form>
       </FormProvider>

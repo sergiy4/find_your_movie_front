@@ -1,5 +1,10 @@
+import RandomCollectionList from '../components/RandomCollectionList';
 const RandomCollection = () => {
-  return <>RandomCollection</>;
+  return (
+    <>
+      <RandomCollectionList />
+    </>
+  );
 };
 
 export default RandomCollection;

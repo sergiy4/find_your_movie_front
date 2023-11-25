@@ -6,7 +6,7 @@ import Modal from '../../../components/Modal';
 import AddMovieToCollectionForm from './AddMovieToCollectionsForm';
 import useAuth from '../../auth/hooks/useAuth';
 import DeleteMovieButton from './DeleteMovieButton';
-
+import { htmlDecode } from '../../../utils/htmlDecode';
 const MovieCard = ({
   _id,
   backdrop_path,
@@ -18,8 +18,11 @@ const MovieCard = ({
   const { userID: authUser } = useAuth();
   const navigate = useNavigate();
   const { collectionID } = useParams();
-  const baseImgUrl = import.meta.env.BASIC_IMG_URL;
+  const baseImgUrl = import.meta.env.VITE_BASIC_IMG_URL;
   const isUserOwnerColelction = userID === authUser ? true : false;
+  console.log(isUserOwnerColelction);
+  console.log(userID);
+  console.log(`${baseImgUrl}${backdrop_path}`);
 
   function navigateToMovie() {
     navigate(`/collections/${collectionID}/movies/${_id}`);
@@ -36,7 +39,7 @@ const MovieCard = ({
           <motion.img
             alt="poster img  ."
             variants={cardImg}
-            src={`${baseImgUrl}${backdrop_path}`}
+            src={`${baseImgUrl}${htmlDecode(backdrop_path)}`}
           />
         </motion.section>
 

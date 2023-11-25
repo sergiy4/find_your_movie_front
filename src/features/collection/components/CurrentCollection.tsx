@@ -6,12 +6,16 @@ import DebounceInput from '../../../components/DeboundeInput';
 import Loader from '../../../components/Loader';
 import MovieCard from '../../movie/components/MovieCard';
 import Pagination from '../../../components/Pagination';
+import Modal from '../../../components/Modal';
+import UpdateCollectionForm from './UpdateCollection';
+import { ReactElement, useRef } from 'react';
 
 const CurrentCollection = () => {
   let load;
-  let content;
+  let content = useRef<ReactElement[] | ReactElement | null>();
   let pagination;
-  let title;
+  let title = useRef<string>('');
+  let editBtn;
   const { collectionID } = useParams();
   const [movie, setMovie] = useSearchParamsState('movie', '');
   const [page, setPage] = useSearchParamsState('page', '1');
@@ -23,14 +27,14 @@ const CurrentCollection = () => {
       collectionID: collectionID || '',
     });
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     load = <Loader />;
   } else if (isError) {
     let errorMessage = getQueryErrorMessage(error);
-    content = <p>{errorMessage}</p>;
+    content.current = <p>{errorMessage}</p>;
   } else if (isSuccess) {
-    content = data.movies.map((movie) => (
-      <MovieCard {...movie} key={movie._id} />
+    content.current = data?.movies.map((movie) => (
+      <MovieCard {...movie} userID={data.userID} key={movie._id} />
     ));
     pagination = (
       <Pagination
@@ -40,7 +44,15 @@ const CurrentCollection = () => {
         totalPageCount={data.totalPageCount}
       />
     );
-    title = data.collectionName;
+
+    editBtn = (
+      <UpdateCollectionForm
+        _id={data._id}
+        isPrivate={data.isPrivate}
+        name={data.collectionName}
+      />
+    );
+    title.current = data.collectionName;
   }
 
   return (
@@ -48,13 +60,15 @@ const CurrentCollection = () => {
       <main className="collection_page">
         <section className="collection_page_header_container">
           <header className="title_collection">
-            <h1 className="title">{title}</h1>
-            {/* {editBtn} */}
+            <h1 className="title">{title.current}</h1>
+            <Modal label={'EDIT'} disabled={isLoading || isFetching}>
+              {editBtn}
+            </Modal>
           </header>
           <DebounceInput setSearch={setMovie} search={movie} />
         </section>
         <section className="collection_page_container">
-          <section className="movie_grid">{content}</section>
+          <section className="movie_grid">{content.current}</section>
           {load}
           <section>{pagination}</section>
         </section>

@@ -37,6 +37,7 @@ DebounceInputProps) => {
   return (
     <input
       className="debounced_input"
+      placeholder="SEARCH"
       onChange={onChange}
       max={100}
       value={value}

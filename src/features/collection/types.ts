@@ -35,6 +35,7 @@ export interface getCollectionResult {
   isPrivate: boolean;
   movies: Movie[];
   totalPageCount: number;
+  userID: string;
 }
 
 export interface CollectionCredential {
