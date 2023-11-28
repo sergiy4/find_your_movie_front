@@ -1,0 +1,25 @@
+@use "../abstracts/" as *;
+.pleas_login_page_box {
+    background-color: $black-primary;
+    min-height: 100%;
+    width: 100%;
+    @include display_flex(row, center, center);
+    .pleas_login_container {
+        @include display_flex(column, center, center);
+        font-family: $main-font;
+        color: $white_primary;
+        letter-spacing: 2px;
+
+        p {
+            color: $white_primary;
+            @include adaptiveValue("font-size", 50, 30);
+            span {
+                color: rgb(137, 137, 222);
+            }
+        }
+
+        h1 {
+            @include adaptiveValue("font-size", 50, 30);
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@use "../abstracts/" as *;
+.form_message {
+    // background-color: aqua;
+    font-family: $main-font;
+    // text-shadow: 1px 0 5px;
+    @include adaptiveValue("font-size", 25, 20);
+    // h3{
+
+    // }
+}
+.success {
+    color: $green-success;
+}
+.error {
+    color: $red;
+}

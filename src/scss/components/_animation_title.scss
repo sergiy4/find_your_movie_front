@@ -1,0 +1,19 @@
+@use "../abstracts" as *;
+// animated title
+.line_mask {
+    align-self: flex-start;
+    overflow: hidden;
+    @include adaptiveValue("height", 125, 34);
+
+    display: inline-block;
+    .wrapper {
+        bottom: 0;
+
+        @include display_flex(column, flex-end, center);
+        @include adaptiveValue("height", 250, 70);
+        @include adaptiveValue("font-size", 100, 25);
+        padding: 0;
+        line-height: 100%;
+        font-family: $main-font;
+    }
+}

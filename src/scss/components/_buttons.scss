@@ -1,0 +1,123 @@
+@use "../abstracts/" as *;
+
+.btn {
+    @include adaptiveValue("height", 35, 25);
+    @include adaptiveValue("width", 100, 70);
+    @include adaptiveValue("font-size", 16, 10);
+
+    background-color: $dark-gray;
+    color: $white-primary;
+
+    border: none;
+    border-radius: 5px;
+
+    font-family: $second-font;
+    cursor: pointer;
+}
+// home page
+.fym_btn {
+    width: auto;
+    @include adaptiveValue("height", 70, 40);
+    @include adaptiveValue("width", 400, 200);
+    @include adaptiveValue("font-size", 30, 20);
+    background-color: $orange-accent;
+    color: black;
+    font-weight: bolder;
+}
+
+.search_btn {
+    background-color: $green-secondary;
+    color: $white-primary;
+}
+
+.add_to_collection_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 200, 100);
+    @include adaptiveValue("font-size", 15, 10);
+
+    background-color: $green-secondary;
+    color: $black-primary;
+}
+
+.delete_movie_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 100, 70);
+    @include adaptiveValue("font-size", 15, 10);
+
+    margin-left: 20px;
+
+    background-color: $red;
+    color: $white-primary;
+}
+
+.delete_collection_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 100, 70);
+    @include adaptiveValue("font-size", 15, 10);
+
+    background-color: $red;
+    color: $white-primary;
+}
+
+.edit_collection_button {
+    background-color: $white-primary;
+    color: $black-primary;
+}
+.create_collection_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 200, 150);
+
+    background-color: $green-secondary;
+    color: $black-primary;
+}
+
+.submit_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 200, 100);
+    margin-left: 20px;
+    background-color: $green-secondary;
+    color: $black-primary;
+    margin-right: 20px;
+}
+
+.btn_close {
+    margin-top: 20px;
+    background-color: inherit;
+    color: $black-primary;
+
+    @include adaptiveValue("font-size", 50, 30);
+
+    font-weight: bold;
+}
+
+.pagination_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 50, 30);
+    @include adaptiveValue("font-size", 20, 16);
+    margin-left: 10px;
+    font-family: $main-font;
+
+    background-color: $black-primary;
+    transition: background-color 0.2s ease-out;
+    &:hover {
+        background-color: $dark-gray;
+    }
+
+    &.current {
+        background-color: $orange-accent;
+    }
+}
+
+.login_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 200, 100);
+    background-color: $green-secondary;
+    color: $black-primary;
+}
+
+.signup_btn {
+    @include adaptiveValue("height", 40, 30);
+    @include adaptiveValue("width", 200, 100);
+    background-color: $green-secondary;
+    color: $black-primary;
+}

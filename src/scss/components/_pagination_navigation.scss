@@ -1,0 +1,8 @@
+@use "../abstracts/" as *;
+
+.pagination_section {
+    margin-top: 50px;
+    color: $white-primary;
+
+    @include display_flex(row, center, center);
+}

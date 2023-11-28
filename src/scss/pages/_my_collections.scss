@@ -1,0 +1,62 @@
+@use '../abstracts/' as *;
+@use 'sass:math';
+.collections_page {
+  background-color: $black-primary;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  @include display_flex(column, space-between, center);
+
+  &_title_container {
+    @include adaptiveValue('margin-top', 80, 70);
+    color: $white-primary;
+    @include display_flex(column, space-between, flex-start);
+
+    .title_my_collections {
+      width: 100%;
+      @include display_flex(row, space-between, flex-start);
+      @media (max-width: $tablet) {
+        @include display_flex(column, flex-start, flex-start);
+      }
+
+      button {
+        align-self: flex-end;
+        @media (max-width: $tablet) {
+          align-self: auto;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+  &_container {
+    flex: 1;
+    margin-bottom: 100px !important;
+    .collection_grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      grid-auto-columns: 1fr;
+      @media (max-width: $pc) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      @media (max-width: $tablet) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
+    }
+    h1 {
+      color: $white-primary;
+    }
+  }
+}
+
+.query_message {
+  color: $white-primary;
+  font-family: $main-font;
+  @include adaptiveValue('font-size', 30, 20);
+}

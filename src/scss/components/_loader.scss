@@ -1,0 +1,17 @@
+@use "../abstracts/" as *;
+.loading_section {
+    color: $white-primary;
+    width: 100%;
+    @include display_flex(row, center, center);
+    // background-color: aqua;
+    // min-height: 100%;
+    // width: 100%;
+    .text {
+        // width: 100%;
+        @include display_flex(row);
+        @include adaptiveValue("font-size", 100, 90);
+        letter-spacing: 20px;
+        font-family: $main-font;
+        // background-color: aquamarine;
+    }
+}

@@ -1,0 +1,237 @@
+@use "../abstracts" as *;
+
+.home_main {
+    height: auto;
+    overflow: hidden;
+    @include display_flex(column, center, center);
+    position: relative;
+}
+
+.color_box {
+    position: relative;
+    width: 100%;
+    height: 110vh;
+
+    @include display_flex(row, center, center);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: $black-primary;
+
+    overflow: hidden;
+    .main_img_section {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        &::after {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.192);
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+
+.first_page_container {
+    position: absolute;
+    height: 100%;
+    min-height: 100%;
+
+    @include display_flex(row, space-between, center);
+    @media (max-width: $tablet) {
+        @include display_flex(column, center, flex-start);
+    }
+
+    .main_text {
+        @include display_flex(column, flex-start, center);
+        padding: toRem(30) 0;
+        color: $white-primary;
+
+        &_line {
+            width: 100%;
+            @include display_flex(row, flex-start, center, toRem(20));
+        }
+    }
+    .buttons_section {
+        @include display_flex(row, flex-end, center);
+    }
+}
+
+// SECOND PAGE
+.second_color_box {
+    position: relative;
+    width: 100%;
+    background-color: $white-primary;
+    @include display_flex(column, flex-start, center);
+}
+.second_page_container {
+    min-height: 100%;
+    height: 100%;
+}
+
+.second_page {
+    &_content {
+        min-height: 100%;
+        height: 100%;
+
+        width: 100%;
+
+        @include adaptiveValue("padding-top", 50, 20);
+        @include display_flex(row, flex-start, center);
+    }
+}
+
+.tabs {
+    padding-bottom: 50px;
+    box-sizing: border-box;
+
+    width: 100%;
+    min-height: 100%;
+
+    .tab_content {
+        width: 95%;
+        margin: 0 auto;
+
+        min-height: 100%;
+        position: relative;
+        @include adaptiveValue("height", 1000, 600);
+        @include display_flex(column, center, flex-end);
+
+        @media (max-width: $tablet) {
+            @include display_flex(column, center, center);
+        }
+
+        [class*="_tab"] {
+            border-radius: 5px;
+            position: absolute;
+            font-family: $main-font;
+
+            @include display_flex(column, flex-start, flex-start);
+
+            [class*="_card"] {
+                @media (max-width: $tablet) {
+                    width: 90%;
+                }
+                padding: 20px;
+                width: 30%;
+                @include adaptiveValue("font-size", 50, 16);
+
+                p {
+                    @include adaptiveValue("font-size", 40, 16);
+                }
+            }
+        }
+        .first_tab {
+            top: 0;
+
+            width: 100%;
+            background-color: $orange-accent;
+            @media (max-width: $tablet) {
+                height: 80%;
+                width: 90%;
+            }
+        }
+        .second_tab {
+            top: 0;
+            width: 65%;
+            z-index: 2;
+            background-color: $yellow-secondary;
+            @media (max-width: $tablet) {
+                top: 15%;
+                height: 40%;
+                width: 90%;
+            }
+        }
+        .third_tab {
+            top: 0%;
+            width: 40%;
+            z-index: 3;
+            background-color: $gray-secondary;
+            @media (max-width: $tablet) {
+                top: 25%;
+                height: 40%;
+                width: 90%;
+            }
+        }
+    }
+}
+
+// THIRD PAGE
+.third_color_box {
+    position: relative;
+    width: 100%;
+
+    background-color: $black-primary;
+    @include display_flex(row, center, center);
+    padding-top: 30px;
+}
+
+.third_page_container {
+    position: relative;
+    min-height: 100%;
+
+    font-family: $main-font;
+    color: $white-primary;
+
+    @include display_flex(column, $gap: 30px);
+
+    .collection_step_content {
+        align-self: flex-end;
+        width: 80%;
+        min-height: 100%;
+
+        @include display_flex(column, center, flex-end, 10px);
+
+        @media (max-width: $tablet) {
+            width: 100%;
+            align-items: center;
+        }
+
+        [class*="_row"] {
+            width: 100%;
+            min-height: 100%;
+            position: relative;
+            @include display_flex(row, center, flex-end, 10px);
+
+            [class*="_step"] {
+                color: $black-primary;
+                flex: 1;
+
+                border-radius: 5px;
+
+                @include display_flex(column, flex-start, flex-start);
+                @include adaptiveValue("height", 400, 200);
+                @include adaptiveValue("font-size", 50, 20);
+                @include adaptiveValue("padding", 60, 10);
+            }
+        }
+
+        .first_row {
+            .collection_first_step {
+                background-color: $yellow-secondary;
+            }
+            .collection_second_step {
+                background-color: $white-primary;
+            }
+        }
+        .second_row {
+            .collection_third_step {
+                background-color: $orange-accent;
+            }
+
+            .collection_forth_step {
+                background-color: $yellow-secondary;
+            }
+        }
+    }
+}

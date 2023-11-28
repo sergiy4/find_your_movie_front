@@ -1,0 +1,45 @@
+@use "../abstracts/" as *;
+
+.around_box {
+    background-color: $black_primary;
+    min-height: 100%;
+
+    width: 100%;
+    @include display_flex(column, center, center);
+}
+.error_page_container {
+    width: 100%;
+    color: $white_primary;
+    font-family: $main_font;
+
+    @include display_flex(column, space-between, center);
+
+    .error_message {
+        @include display_flex(column, center, center);
+        h1 {
+            @include adaptiveValue("font-size", 150, 100);
+        }
+        h2 {
+            @include adaptiveValue("font-size", 100, 50);
+        }
+        p {
+            @include adaptiveValue("font-size", 50, 30);
+        }
+    }
+
+    .line_mask_menu {
+        overflow: hidden;
+
+        @include adaptiveValue("height", 98, 50);
+
+        .wrapper_div {
+            cursor: pointer;
+
+            @include adaptiveValue("height", 300, 150);
+            @include adaptiveValue("font-size", 100, 50);
+            @include display_flex(column, flex-end, flex-end);
+
+            line-height: 95%;
+        }
+    }
+}

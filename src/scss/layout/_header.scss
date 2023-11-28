@@ -1,0 +1,99 @@
+@use '../abstracts' as *;
+
+.layout {
+  height: auto;
+  position: relative;
+}
+.header_wrapped_fix {
+  position: fixed;
+  z-index: 800;
+
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.363);
+}
+.main_header {
+  border-radius: 10px;
+
+  width: 100%;
+  @include display_flex(row, center, center);
+}
+.header {
+  color: $white-primary;
+
+  font-family: $main-font;
+
+  height: 100%;
+  padding: 15px 0;
+
+  @include display_flex(row, space-between, center);
+
+  &_title {
+    flex: 1;
+
+    @include adaptiveValue('font-size', 30, 20);
+  }
+  &_btn_section {
+    color: $black-primary;
+
+    margin-right: 30px;
+  }
+  &_nav {
+    @media (max-width: $tablet) {
+      @include display_flex(row, flex-end, center);
+    }
+  }
+}
+
+.menu_header_element {
+  z-index: 999;
+
+  display: none;
+  @media (max-width: $tablet) {
+    @include display_flex(row, center, center);
+  }
+  .line_mask {
+    height: 1rem;
+    p {
+      cursor: pointer;
+    }
+  }
+
+  .burger {
+    width: 40px;
+    display: flex;
+    @include display_flex(column, center, center);
+    cursor: pointer;
+    &::after,
+    &::before {
+      content: '';
+      height: 1px;
+      width: 100%;
+      background-color: $white-primary;
+      position: relative;
+      display: block;
+      transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    &::after {
+      top: -4px;
+    }
+
+    &::before {
+      top: 4px;
+    }
+  }
+
+  .burgerActive {
+    &::after {
+      transform: rotate(45deg);
+      top: -1px;
+    }
+
+    &::before {
+      transform: rotate(-45deg);
+      top: 1px;
+    }
+  }
+}

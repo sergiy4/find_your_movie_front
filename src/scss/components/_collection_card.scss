@@ -1,0 +1,22 @@
+@use '../abstracts/' as *;
+
+.collection_card {
+  background-color: $yellow-secondary;
+  word-break: break-word;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: $main-font;
+  @include adaptiveValue('font-size', 25, 18);
+  cursor: pointer;
+
+  @include adaptiveValue('min-height', 200, 100);
+
+  @include display_flex(column, space-between, flex-start);
+
+  @media (max-height: 400px) {
+    margin-bottom: 40px;
+  }
+  button {
+    align-self: flex-end;
+  }
+}
