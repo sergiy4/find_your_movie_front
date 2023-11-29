@@ -1,51 +1,55 @@
-@use "../abstracts/" as *;
+@use '../abstracts/' as *;
 .movie_card {
-    // background-color: aqua;
-    @include adaptiveValue("min-height", 400, 250);
-    height: auto;
+  // background-color: aqua;
+  @include adaptiveValue('min-height', 400, 250);
+  height: auto;
 
+  border-radius: 5px;
+  font-family: $main-font;
+
+  @include adaptiveValue('font-size', 30, 20);
+  position: relative;
+
+  @include display_flex(column, space-between, flex-start);
+
+  .movie_img {
     border-radius: 5px;
-    font-family: $main-font;
+    overflow: hidden;
 
-    @include adaptiveValue("font-size", 30, 20);
+    img {
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      height: 100%;
+      scale: 1.1;
+
+      max-width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .movie_info_section {
+    width: 100%;
+
     position: relative;
 
+    color: $white-primary;
+
+    padding: 0 0 20px 0;
+    box-sizing: border-box;
     @include display_flex(column, space-between, flex-start);
 
-    .movie_img {
-        border-radius: 5px;
-        overflow: hidden;
-
-        img {
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            height: 100%;
-            scale: 1.1;
-
-            max-width: 100%;
-            object-fit: cover;
-        }
+    section {
+      width: 100%;
+      @include display_flex(row, space-between, flex-start);
     }
-
-    .movie_info_section {
-        width: 100%;
-
-        position: relative;
-
-        color: $white-primary;
-
-        padding: 0 0 20px 0;
-        box-sizing: border-box;
-        @include display_flex(column, space-between, flex-start);
-
-        .movie_title {
-            cursor: pointer;
-            transition: color 0.3s;
-            transform: color $orange-accent;
-            &:hover {
-                color: $orange-accent;
-            }
-        }
+    .movie_title {
+      cursor: pointer;
+      transition: color 0.3s;
+      transform: color $orange-accent;
+      &:hover {
+        color: $orange-accent;
+      }
     }
+  }
 }

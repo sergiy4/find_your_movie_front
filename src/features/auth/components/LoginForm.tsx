@@ -8,6 +8,8 @@ import usePersist from '../hooks/usePersist';
 import FormInput from '../../../components/FormInput';
 import { useNavigate } from 'react-router-dom';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
+import { useEffect } from 'react';
+import { setLoginState } from '../utils/loginState';
 
 const LoginForm = () => {
   let errorMessage;
@@ -32,11 +34,6 @@ const LoginForm = () => {
       if ('data' in credentials) {
         dispatch(setCredentials(credentials.data));
       }
-
-      // TODO: clear form
-      // TODO: redirect to main page
-
-      // methods.reset();
     } catch (err) {
       console.log(err);
     }
@@ -45,13 +42,18 @@ const LoginForm = () => {
   if (isError) {
     console.log(error);
     errorMessage = getQueryErrorMessage(error);
-  } else if (isSuccess) {
-    navigate('/');
   }
+  useEffect(() => {
+    if (isSuccess) {
+      setLoginState(true);
+      navigate('/');
+    }
+  }, [isSuccess]);
 
   return (
     <>
       <div className="box_form">
+        <h2>LOGIN</h2>
         <FormProvider {...methods}>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form_inputs">
@@ -110,7 +112,7 @@ const LoginForm = () => {
                   navigate('/signup');
                 }}
               >
-                Sign ups
+                Sign up
               </button>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { SelectToken } from '../authApi/authSlice';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import RequireAuth from './RequireAuth';
 import HomeLink from '../../../components/HomeLink';
+import { setLoginState } from '../utils/loginState';
 
 const PersistLogin = () => {
   const [persist] = usePersist();
@@ -16,6 +17,9 @@ const PersistLogin = () => {
   const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
     useRefreshMutation();
 
+  if (!token && !persist) {
+    setLoginState(false);
+  }
   useEffect(() => {
     const verifyRefreshToken = async () => {
       console.log('verify refresh token');
@@ -49,7 +53,6 @@ const PersistLogin = () => {
         </section>
       </section>
     );
-    content = <p>Loading...</p>;
   } else if (isError) {
     // persist: yes
     // token: no

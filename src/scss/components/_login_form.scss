@@ -1,43 +1,41 @@
-@use "../abstracts/" as *;
+@use '../abstracts/' as *;
 .box_form {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  font-family: $main-font;
+  @include display_flex(column, flex-start, flex-start, $gap: 30px);
+
+  //   @media (max-width: $tablet) {
+  //     gap: 60px;
+  //   }
+
+  form {
     width: 100%;
-    font-family: $main-font;
-    @include display_flex(column, flex-start, flex-start, $gap: 80px);
 
+    @include display_flex(column, $gap: 30px);
     @media (max-width: $tablet) {
-        gap: 60px;
+      gap: 25px;
+    }
+    .h2 {
+      @include adaptiveValue('font-size', 30, 20);
     }
 
-    form {
-        width: 100%;
-
-        @include display_flex(column, $gap: 30px);
-        @media (max-width: $tablet) {
-            gap: 25px;
-        }
-        .h2 {
-            @include adaptiveValue("font-size", 30, 20);
-        }
-
-        .form_inputs {
-            width: 100%;
-            @include display_flex(column);
-        }
-
-        .login_bottom_section {
-            margin-top: 40px;
-
-            @include display_flex(column, $gap: 10px);
-        }
+    .form_inputs {
+      width: 100%;
+      @include display_flex(column);
     }
-    footer {
-        box-sizing: border-box;
-        width: 100%;
+
+    .login_bottom_section {
+      @include display_flex(column, $gap: 10px);
     }
-    .footer_register {
-        position: absolute;
-        bottom: 0;
-    }
+  }
+  footer {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .footer_register {
+    position: absolute;
+    bottom: 0;
+  }
 }

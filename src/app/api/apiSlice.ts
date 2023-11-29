@@ -8,7 +8,7 @@ import {
 import { setCredentials, Logout } from '../../features/auth/authApi/authSlice';
 import { RootState } from '../store';
 import { UserInfo } from '../../features/auth/types';
-
+import { setLoginState } from '../../features/auth/utils/loginState';
 const baseQuery = fetchBaseQuery({
   baseUrl: 'http://localhost:3000/',
   credentials: 'include',
@@ -55,6 +55,7 @@ const baseQueryWithReAuth: BaseQueryFn<
       result = await baseQuery(arg, api, extraOptions);
     } else {
       api.dispatch(Logout());
+      setLoginState(false);
     }
   }
   return result;

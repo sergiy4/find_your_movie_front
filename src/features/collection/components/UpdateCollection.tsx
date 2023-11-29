@@ -19,8 +19,7 @@ const UpdateCollectionForm = ({
   isPrivate,
   name,
 }: UpdateCollectionFormProps) => {
-  let errorMessage;
-
+  const notifyError = (value: string) => toast.error(value);
   const notifySuccess = () => toast.success('Сollection successfully updated ');
 
   const methods = useForm<CollectionSchemaType>({
@@ -43,19 +42,19 @@ const UpdateCollectionForm = ({
     }
   });
 
-  if (isError) {
-    console.log(error);
-    errorMessage = getQueryErrorMessage(error);
-  }
-
   useEffect(() => {
+    if (isError) {
+      let errorMessage = getQueryErrorMessage(error);
+      notifyError(errorMessage);
+    }
     if (isSuccess) {
       notifySuccess();
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
 
   return (
     <>
+      <h1>UPDATE COLLECTION</h1>
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()}>
           <FormInput
@@ -73,7 +72,11 @@ const UpdateCollectionForm = ({
             errors={errors}
             defaultValue={isPrivate}
           />
-          <button disabled={isLoading} onClick={onSubmit}>
+          <button
+            disabled={isLoading}
+            onClick={onSubmit}
+            className="btn submit_btn"
+          >
             SAVE
           </button>
         </form>

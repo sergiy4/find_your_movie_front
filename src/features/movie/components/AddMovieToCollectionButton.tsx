@@ -13,16 +13,10 @@ const AddMovieToCollectionButton = ({
   selectedCollection,
   movie,
 }: AddMovieToCollectionButton) => {
-  let errorMessage;
+  const notifyError = (value: string) => toast.error(value);
   const notifySuccess = () => toast.success('Movie added to collections');
   const [addMovie, { isError, isLoading, isSuccess, error }] =
     useAddMovieToCollectionsMutation();
-
-  if (isError) {
-    errorMessage = getQueryErrorMessage(error);
-  } else if (isSuccess) {
-    // TODO: Success message
-  }
 
   async function addMovieToCollection(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -38,21 +32,24 @@ const AddMovieToCollectionButton = ({
     }
   }
   useEffect(() => {
-    if (isSuccess) {
+    if (isError) {
+      let errorMessage = getQueryErrorMessage(error);
+      notifyError(errorMessage);
+    } else if (isSuccess) {
       notifySuccess();
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError]);
   return (
     <>
       <button
         disabled={isLoading}
+        className="btn submit_btn"
         onClick={(e) => {
           addMovieToCollection(e);
         }}
       >
         SUBMIT
       </button>
-      {errorMessage ? <p>{errorMessage}</p> : null}
     </>
   );
 };

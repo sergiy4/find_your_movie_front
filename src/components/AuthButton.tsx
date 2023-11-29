@@ -1,15 +1,15 @@
 import LogoutButton from '../features/auth/components/LogoutButton';
-import useAuth from '../features/auth/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { getLoginState } from '../features/auth/utils/loginState';
 const AuthButton = () => {
   let content;
-  const { userID } = useAuth();
+  const loginState = getLoginState();
   const navigate = useNavigate();
 
-  if (location.href === '/login') {
+  if (location.pathname === '/login') {
     content = null;
   } else {
-    if (userID) {
+    if (loginState) {
       content = <LogoutButton />;
     } else {
       content = (
