@@ -41,17 +41,7 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
         method: 'GET',
         params: { page, pageSize, search },
       }),
-      providesTags: (result) => {
-        if (result) {
-          return [
-            { type: 'Collection', id: 'LIST' },
-            ...result.collections.map((collections) => ({
-              type: 'Collection' as const,
-              id: collections._id,
-            })),
-          ];
-        } else return [{ type: 'Collection', id: 'LIST' }];
-      },
+      providesTags: ['Collection'],
     }),
 
     GetCurrentUserAllCollections: builder.query<Collection[], void>({
@@ -105,6 +95,8 @@ export const collectionApiSlice = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/collections/${id}`,
         method: 'DELETE',
+        validateStatus: (response, result) =>
+          response.status === 200 && !result.isError,
       }),
       invalidatesTags: ['Collection'],
     }),

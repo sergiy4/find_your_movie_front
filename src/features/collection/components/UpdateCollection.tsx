@@ -5,8 +5,7 @@ import FormInput from '../../../components/FormInput';
 import { CollectionSchema, CollectionSchemaType } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
-import { toast, ToastContainer } from 'react-toastify';
-import { useEffect } from 'react';
+import useToastMessages from '../../../hooks/useToastMessage';
 
 interface UpdateCollectionFormProps {
   _id: string;
@@ -19,8 +18,7 @@ const UpdateCollectionForm = ({
   isPrivate,
   name,
 }: UpdateCollectionFormProps) => {
-  const notifyError = (value: string) => toast.error(value);
-  const notifySuccess = () => toast.success('Сollection successfully updated ');
+  const [notifySuccess, notifyError] = useToastMessages();
 
   const methods = useForm<CollectionSchemaType>({
     resolver: zodResolver(CollectionSchema),
@@ -31,26 +29,20 @@ const UpdateCollectionForm = ({
     formState: { errors },
   } = methods;
 
-  const [update, { isError, isSuccess, error, isLoading }] =
-    useUpdateCollectionMutation();
+  const [update, { error, isLoading }] = useUpdateCollectionMutation();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await update({ ...data, collectionID: _id });
+      await update({ ...data, collectionID: _id }).unwrap();
+      console.log('success');
+      notifySuccess('Сollection successfully updated');
     } catch (err) {
       console.log(err);
-    }
-  });
 
-  useEffect(() => {
-    if (isError) {
       let errorMessage = getQueryErrorMessage(error);
       notifyError(errorMessage);
     }
-    if (isSuccess) {
-      notifySuccess();
-    }
-  }, [isSuccess, isError]);
+  });
 
   return (
     <>
@@ -66,12 +58,7 @@ const UpdateCollectionForm = ({
             defaultValue={name}
             errors={errors}
           />
-          <CheckboxInput
-            label="Private ?"
-            name="isPrivate"
-            errors={errors}
-            defaultValue={isPrivate}
-          />
+          <CheckboxInput label="Private ?" name="isPrivate" errors={errors} />
           <button
             disabled={isLoading}
             onClick={onSubmit}

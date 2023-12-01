@@ -29,7 +29,6 @@ interface ModalWrapperProps {
 }
 
 const ModalWrapper = ({ children, isOpen, changeOpen }: ModalWrapperProps) => {
-  console.log('ModalWrapper');
   return ReactDom.createPortal(
     <>
       <AnimatePresence initial={false} mode="wait">

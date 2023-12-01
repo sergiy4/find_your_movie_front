@@ -20,16 +20,13 @@ const MovieCard = ({
   const { collectionID } = useParams();
   const baseImgUrl = import.meta.env.VITE_BASIC_IMG_URL;
   const isUserOwnerColelction = userID === authUser ? true : false;
-  console.log(isUserOwnerColelction);
-  console.log(userID);
-  console.log(`${baseImgUrl}${backdrop_path}`);
 
   function navigateToMovie() {
     navigate(`/collections/${collectionID}/movies/${_id}`);
   }
   return (
     <>
-      <article className="movie_card">
+      <article className="movie_card" data-testid="movie_card">
         <motion.section
           variants={card}
           whileHover="hover"

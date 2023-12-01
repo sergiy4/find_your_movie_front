@@ -12,6 +12,6 @@ export interface UserInfo {
   accessToken: string;
 }
 
-export interface AuthInitialState {
-  token: null | string;
-}
+export type AuthInitialState = {
+  token: string | null;
+};

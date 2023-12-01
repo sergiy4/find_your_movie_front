@@ -8,11 +8,9 @@ interface ModalProps {
 }
 
 const Modal = ({ children, label, disabled }: ModalProps) => {
-  console.log('Modal');
   const [open, setOpen] = useState(false);
 
   const changeOpen = () => {
-    console.log(open);
     setOpen((prev) => !prev);
   };
   return (
@@ -24,6 +22,7 @@ const Modal = ({ children, label, disabled }: ModalProps) => {
           e.stopPropagation();
           changeOpen();
         }}
+        data-testid="modal_button"
       >
         {label}
       </button>

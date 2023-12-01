@@ -10,10 +10,11 @@ interface JwtPayload {
 
 const useAuth = () => {
   const token = useSelector(SelectToken);
+
   if (token) {
     const decode = jwtDecode<JwtPayload>(token);
-    const { userID } = decode.UserInfo;
 
+    const { userID } = decode.UserInfo;
     return { userID };
   }
 

@@ -30,7 +30,7 @@ const loadTransition: any = {
 
 const Loader = () => {
   return (
-    <section className="loading_section">
+    <section className="loading_section" data-testid="loader">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.3 } }}

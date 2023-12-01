@@ -7,10 +7,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import useToastMessages from '../../../hooks/useToastMessage';
 
 const CreateCollectionForm = () => {
-  const notifyError = (value: string) => toast.error(value);
-  const notifySuccess = () => toast.success('Сollection successfully created');
+  const [notifySuccess, notifyError] = useToastMessages();
 
   const methods = useForm<CollectionSchemaType>({
     resolver: zodResolver(CollectionSchema),
@@ -21,32 +21,28 @@ const CreateCollectionForm = () => {
     formState: { errors },
   } = methods;
 
-  const [create, { isError, isSuccess, error, isLoading }] =
-    useCreateNewCollectionMutation();
+  const [create, { error, isLoading }] = useCreateNewCollectionMutation();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await create(data);
+      await create(data).unwrap();
+      notifySuccess('Сollection successfully created');
     } catch (err) {
       console.log(err);
-    }
-  });
 
-  useEffect(() => {
-    if (isError) {
       let errorMessage = getQueryErrorMessage(error);
       notifyError(errorMessage);
     }
-    if (isSuccess) {
-      notifySuccess();
-    }
-  }, [isSuccess, isError]);
+  });
 
   return (
     <>
       <h2>CREATE COLLECTION</h2>
       <FormProvider {...methods}>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          data-testid="create_collection_form"
+        >
           <FormInput
             label="Name"
             placeholder="Name"

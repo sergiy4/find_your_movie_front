@@ -29,7 +29,10 @@ const Pagination = ({
 
   return (
     <>
-      <section className="pagination_section">
+      <section
+        className="pagination_section"
+        data-testid="pagination_component"
+      >
         {paginationRange.map((page) => {
           if (typeof page === 'string') {
             return <div key={page}>...</div>;

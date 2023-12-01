@@ -36,6 +36,7 @@ const CurrentCollection = () => {
     content.current = data?.movies?.map((movie) => (
       <MovieCard {...movie} userID={data.userID} key={movie._id} />
     ));
+
     pagination = (
       <Pagination
         currentPage={parseInt(page, 10)}

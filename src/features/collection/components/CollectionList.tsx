@@ -31,7 +31,6 @@ const CollectionList = () => {
       setPage('1');
     }
   } else if (isSuccess) {
-    console.log(currentData);
     if (currentData) {
       collections = currentData.collections.map((collection) => (
         <CollectionItem key={collection._id} {...collection} />

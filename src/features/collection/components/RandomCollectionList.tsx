@@ -7,8 +7,6 @@ import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import DebounceInput from '../../../components/DeboundeInput';
 import { useSearchParamsState } from '../../../hooks/useSearchParamsState';
 import Loader from '../../../components/Loader';
-import Modal from '../../../components/Modal';
-import CreateCollectionForm from './CreateCollectionForm';
 
 const RandomCollectionList = () => {
   let load;
@@ -28,6 +26,7 @@ const RandomCollectionList = () => {
     errorMessage = getQueryErrorMessage(error);
   } else if (isSuccess) {
     console.log(currentData);
+
     if (currentData) {
       collections = currentData.collections.map((collection) => (
         <CollectionItem key={collection._id} {...collection} />

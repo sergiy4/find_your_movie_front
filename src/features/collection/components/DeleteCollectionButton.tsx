@@ -1,13 +1,21 @@
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import { useDeleteCollectionMutation } from '../collectionSlice/collectionApi';
+import useToastMessages from '../../../hooks/useToastMessage';
 
 const DeleteButton = ({ id }: { id: string }) => {
-  let errorMessage;
-  const [deleteCollection, { isError, error }] = useDeleteCollectionMutation();
+  const [notifySuccess, notifyError] = useToastMessages();
 
-  if (isError) {
-    errorMessage = getQueryErrorMessage(error);
-  }
+  const [deleteCollection, { error }] = useDeleteCollectionMutation();
+
+  const handleDelete = async () => {
+    try {
+      await deleteCollection(id).unwrap();
+      notifySuccess('Collection was deleted');
+    } catch (err) {
+      let errorMessage = getQueryErrorMessage(error);
+      notifyError(errorMessage);
+    }
+  };
 
   return (
     <>
@@ -15,12 +23,11 @@ const DeleteButton = ({ id }: { id: string }) => {
         className="btn delete_collection_btn"
         onClick={(e) => {
           e.stopPropagation();
-          deleteCollection(id);
+          handleDelete();
         }}
       >
         DELETE
       </button>
-      {errorMessage ? <p>{errorMessage}</p> : null}
     </>
   );
 };
