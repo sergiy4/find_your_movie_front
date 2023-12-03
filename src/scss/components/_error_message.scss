@@ -1,0 +1,6 @@
+@use '../abstracts/' as *;
+.error_message {
+  font-family: $main-font;
+  color: $white_primary;
+  @include adaptiveValue('font-size', 50, 30);
+}

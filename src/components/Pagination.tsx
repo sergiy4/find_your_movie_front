@@ -18,7 +18,7 @@ const Pagination = ({
     siblingCount,
     totalPageCount,
   });
-  console.log(paginationRange);
+  console.log(currentPage);
 
   if (!paginationRange) {
     return null;
@@ -38,7 +38,14 @@ const Pagination = ({
             return <div key={page}>...</div>;
           }
 
-          return <PaginationButton page={page} key={page} setPage={setPage} />;
+          return (
+            <PaginationButton
+              currentPage={currentPage}
+              page={page}
+              key={page}
+              setPage={setPage}
+            />
+          );
         })}
       </section>
     </>

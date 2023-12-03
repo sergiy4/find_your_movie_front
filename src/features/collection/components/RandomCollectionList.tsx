@@ -24,6 +24,9 @@ const RandomCollectionList = () => {
   } else if (isError) {
     console.log(error);
     errorMessage = getQueryErrorMessage(error);
+    if (parseInt(page, 10) > 1) {
+      setPage('1');
+    }
   } else if (isSuccess) {
     console.log(currentData);
 

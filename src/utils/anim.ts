@@ -90,8 +90,8 @@ export const cardImg = {
     },
   },
 };
-export const card = {
-  hover: {
-    // scale:1.1
-  },
-};
+// export const card = {
+//   hover: {
+//     // scale:1.1
+//   },
+// };

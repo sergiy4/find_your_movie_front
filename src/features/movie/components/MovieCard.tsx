@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { card, cardImg } from '../../../utils/anim';
+import { cardImg } from '../../../utils/anim';
 import { Movie } from '../types';
 import Modal from '../../../components/Modal';
 import AddMovieToCollectionForm from './AddMovieToCollectionsForm';
@@ -28,7 +28,7 @@ const MovieCard = ({
     <>
       <article className="movie_card" data-testid="movie_card">
         <motion.section
-          variants={card}
+          // variants={card}
           whileHover="hover"
           className="movie_img"
           onClick={navigateToMovie}

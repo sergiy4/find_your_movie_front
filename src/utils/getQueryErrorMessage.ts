@@ -9,6 +9,7 @@ export type QueryError =
   | undefined;
 
 function getQueryErrorMessage(error: QueryError): string {
+  console.log(error);
   if (error) {
     if (isCustomErrorType(error)) {
       return `Error: ${error?.data?.message}`;

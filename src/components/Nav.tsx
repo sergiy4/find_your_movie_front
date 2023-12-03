@@ -96,8 +96,8 @@ const Nav = ({ isActiveMenu, setIsActiveMenu }: NavProps) => {
                   variants={hoverTextAnimation}
                   whileHover="hover"
                 >
-                  <h3>MY COLLECTION </h3>
-                  <h3>MY COLLECTION </h3>
+                  <h3>MY COLLECTIONS </h3>
+                  <h3>MY COLLECTIONS </h3>
                 </motion.div>
               </motion.div>
             </div>
@@ -107,7 +107,7 @@ const Nav = ({ isActiveMenu, setIsActiveMenu }: NavProps) => {
             <div
               className="line_mask_menu"
               onClick={() => {
-                navigate('/randomCollections');
+                navigate('/randomCollections?page=1 ');
                 setIsActiveMenu(false);
               }}
             >

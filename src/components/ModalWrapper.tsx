@@ -25,10 +25,10 @@ const dropIn = {
 interface ModalWrapperProps {
   children: ReactNode;
   isOpen: boolean;
-  changeOpen: () => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ModalWrapper = ({ children, isOpen, changeOpen }: ModalWrapperProps) => {
+const ModalWrapper = ({ children, isOpen, setOpen }: ModalWrapperProps) => {
   return ReactDom.createPortal(
     <>
       <AnimatePresence initial={false} mode="wait">
@@ -37,7 +37,7 @@ const ModalWrapper = ({ children, isOpen, changeOpen }: ModalWrapperProps) => {
             className="modal-overlay"
             onClick={(e) => {
               e.stopPropagation();
-              changeOpen();
+              setOpen(false);
             }}
           >
             <motion.div
@@ -51,7 +51,7 @@ const ModalWrapper = ({ children, isOpen, changeOpen }: ModalWrapperProps) => {
               <button
                 className="btn btn_close"
                 onClick={() => {
-                  changeOpen();
+                  setOpen(false);
                 }}
               >
                 &#xD7;

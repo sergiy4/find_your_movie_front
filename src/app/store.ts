@@ -2,20 +2,31 @@ import {
   configureStore,
   combineReducers,
   PreloadedState,
+  AnyAction,
+  Reducer,
 } from '@reduxjs/toolkit';
 import { apiSlice } from './api/apiSlice';
 import authReducer from '../features/auth/authApi/authSlice';
 import findYourMovieReducer from '../features/findYourMovie/FYMSlice/FYMSlice';
 
-const rootReducer = combineReducers({
+export const combinedReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authReducer,
   fym: findYourMovieReducer,
 });
 
+export type RootState = ReturnType<typeof combinedReducer>;
+
+const rootReducer = (state: RootState, action: AnyAction) => {
+  if (action.type === 'auth/Logout') {
+    state = {} as RootState;
+  }
+  return combinedReducer(state, action);
+};
+
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
-    reducer: rootReducer,
+    reducer: rootReducer as Reducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(apiSlice.middleware),
     devTools: true,
@@ -24,6 +35,5 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
 };
 export const store = setupStore();
 
-export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];

@@ -26,7 +26,7 @@ const Modal = ({ children, label, disabled }: ModalProps) => {
       >
         {label}
       </button>
-      <ModalWrapper isOpen={open} changeOpen={changeOpen}>
+      <ModalWrapper isOpen={open} setOpen={setOpen}>
         {children}
       </ModalWrapper>
     </>

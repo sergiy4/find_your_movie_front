@@ -37,7 +37,8 @@ const FindYourMovie = () => {
     content = <Loader />;
   } else if (isError) {
     let errorMessage = getQueryErrorMessage(error);
-    content = <p>{errorMessage}</p>;
+    console.log(errorMessage);
+    content = <p className="error_message">{errorMessage}</p>;
   } else if (isSuccess) {
     const movieData = data as DetailMovie;
 

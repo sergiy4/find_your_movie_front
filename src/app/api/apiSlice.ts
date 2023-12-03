@@ -9,6 +9,7 @@ import { setCredentials, Logout } from '../../features/auth/authApi/authSlice';
 import { RootState } from '../store';
 import { UserInfo } from '../../features/auth/types';
 import { setLoginState } from '../../features/auth/utils/loginState';
+
 const baseQuery = fetchBaseQuery({
   baseUrl: 'http://localhost:3000/',
   credentials: 'include',
@@ -38,7 +39,6 @@ const baseQueryWithReAuth: BaseQueryFn<
 
   // if the access token has expired
   if (result?.error?.status === 403) {
-    console.log(result?.error);
     console.log('sending refresh token');
 
     // send a token access update request
