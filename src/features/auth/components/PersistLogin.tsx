@@ -10,6 +10,7 @@ import HomeLink from '../../../components/HomeLink';
 import { setLoginState } from '../utils/loginState';
 
 const PersistLogin = () => {
+  console.log('PERSIST');
   const [persist] = usePersist();
   const token = useSelector(SelectToken);
   const [trueSuccess, setTrueSuccess] = useState(false);
@@ -20,6 +21,7 @@ const PersistLogin = () => {
   if (!token && !persist) {
     setLoginState(false);
   }
+
   useEffect(() => {
     const verifyRefreshToken = async () => {
       console.log('verify refresh token');
@@ -39,13 +41,14 @@ const PersistLogin = () => {
 
   if (!persist) {
     // persist: no
-    // console.log('persist: no');
+    console.log('persist: no');
     content = (
       <RequireAuth>
         <Outlet />
       </RequireAuth>
     );
   } else if (isLoading) {
+    console.log('isLoadinggg');
     content = (
       <section className="pleas_login_page_box">
         <section className="pleas_login_container">
@@ -68,13 +71,13 @@ const PersistLogin = () => {
               Please <span>login</span> again
             </p>
           </Link>
-          <p>OR GO </p>
+          <p>OR GO</p>
           <HomeLink />
         </section>
       </section>
     );
   } else if (isSuccess && trueSuccess) {
-    // console.log('Success');
+    console.log('Success');
     // persist: yes
     // token: yes
     content = (
@@ -83,7 +86,7 @@ const PersistLogin = () => {
       </RequireAuth>
     );
   } else if (token && isUninitialized) {
-    // console.log('token and un');
+    console.log('token and un');
     // persist: yes
     // token: no
     content = (

@@ -12,6 +12,7 @@ const useAuth = () => {
   const token = useSelector(SelectToken);
 
   if (token) {
+    console.log('jwt');
     const decode = jwtDecode<JwtPayload>(token);
 
     const { userID } = decode.UserInfo;

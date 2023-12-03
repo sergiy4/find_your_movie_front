@@ -6,7 +6,6 @@ import {
   setupFailedCreateCollectionHandlers,
 } from '../msw/mswHandler';
 import { waitFor } from '@testing-library/react';
-
 import userEvent from '@testing-library/user-event';
 import { toast } from 'react-toastify';
 import '@testing-library/jest-dom';

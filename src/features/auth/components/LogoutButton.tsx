@@ -1,34 +1,30 @@
-import { useEffect } from 'react';
 import { useSendLogoutMutation } from '../authApi/authApi';
 import { useNavigate } from 'react-router-dom';
 import { setLoginState } from '../utils/loginState';
+import useToastMessages from '../../../hooks/useToastMessage';
+import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
+
 const LogoutButton = () => {
+  const [notifySuccess, notifyError] = useToastMessages();
   const navigate = useNavigate();
-  const [logout, { isError, error, isSuccess }] = useSendLogoutMutation();
+  const [logout, { error }] = useSendLogoutMutation();
 
-  if (isError) {
-    console.log(error);
-  } else if (isSuccess) {
-  }
-
-  useEffect(() => {
-    if (isSuccess) {
-      navigate('/');
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
       setLoginState(false);
+      navigate('/');
+    } catch (err) {
+      console.log(error);
+      let errorMessage = getQueryErrorMessage(error);
+      notifyError(errorMessage);
     }
-  }, [isSuccess]);
+  };
 
   return (
-    <>
-      <button
-        className="btn header_login_btn"
-        onClick={() => {
-          logout();
-        }}
-      >
-        Logout
-      </button>
-    </>
+    <button className="btn header_login_btn" onClick={handleLogout}>
+      Logout
+    </button>
   );
 };
 export default LogoutButton;

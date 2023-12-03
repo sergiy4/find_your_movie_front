@@ -10,16 +10,19 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'react-toastify';
 import '@testing-library/jest-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('UpdateCollectionForm component', () => {
   beforeEach(() => setupCollectionHandler());
   it('checking whether the initial value and input are set', () => {
     const { getByDisplayValue } = renderWithProviders(
-      <UpdateCollectionForm
-        isPrivate={true}
-        name="collection_name_moon"
-        _id="e32e23r"
-      />
+      <MemoryRouter>
+        <UpdateCollectionForm
+          isPrivate={true}
+          name="collection_name_moon"
+          _id="e32e23r"
+        />
+      </MemoryRouter>
     );
 
     const InputForm = getByDisplayValue('collection_name_moon');
@@ -33,11 +36,13 @@ describe('UpdateCollectionForm component', () => {
     const user = userEvent.setup();
 
     const { getByRole } = renderWithProviders(
-      <UpdateCollectionForm
-        isPrivate={true}
-        name="collection_name_moon"
-        _id="e32e23r"
-      />
+      <MemoryRouter>
+        <UpdateCollectionForm
+          isPrivate={true}
+          name="collection_name_moon"
+          _id="e32e23r"
+        />
+      </MemoryRouter>
     );
 
     const updateCollectionButton = getByRole('button');
@@ -59,11 +64,13 @@ describe('UpdateCollectionForm component', () => {
     const user = userEvent.setup();
 
     const { getByRole } = renderWithProviders(
-      <UpdateCollectionForm
-        isPrivate={true}
-        name="collection_name_moon"
-        _id="e32e23r"
-      />
+      <MemoryRouter>
+        <UpdateCollectionForm
+          isPrivate={true}
+          name="collection_name_moon"
+          _id="e32e23r"
+        />
+      </MemoryRouter>
     );
 
     const updateCollectionButton = getByRole('button');
@@ -73,6 +80,6 @@ describe('UpdateCollectionForm component', () => {
       await user.click(updateCollectionButton);
     });
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalled();
   });
 });

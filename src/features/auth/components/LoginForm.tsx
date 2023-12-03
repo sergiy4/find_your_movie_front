@@ -31,6 +31,7 @@ const LoginForm = () => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const credentials = await login(data);
+
       if ('data' in credentials) {
         dispatch(setCredentials(credentials.data));
       }

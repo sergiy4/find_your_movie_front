@@ -6,6 +6,7 @@ import { CollectionSchema, CollectionSchemaType } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import useToastMessages from '../../../hooks/useToastMessage';
+import { useNavigate } from 'react-router-dom';
 
 interface UpdateCollectionFormProps {
   _id: string;
@@ -18,6 +19,7 @@ const UpdateCollectionForm = ({
   isPrivate,
   name,
 }: UpdateCollectionFormProps) => {
+  const navigate = useNavigate();
   const [notifySuccess, notifyError] = useToastMessages();
 
   const methods = useForm<CollectionSchemaType>({
@@ -41,6 +43,7 @@ const UpdateCollectionForm = ({
 
       let errorMessage = getQueryErrorMessage(error);
       notifyError(errorMessage);
+      navigate('/collections');
     }
   });
 

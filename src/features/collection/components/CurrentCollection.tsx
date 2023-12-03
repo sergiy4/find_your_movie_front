@@ -63,7 +63,7 @@ const CurrentCollection = () => {
   }, [isError]);
   return (
     <>
-      <main className="collection_page">
+      <main className="collection_page" data-testid="collection">
         <section className="collection_page_header_container">
           <header className="title_collection">
             <h1 className="title">{title.current}</h1>

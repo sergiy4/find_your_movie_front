@@ -17,18 +17,18 @@ const SignUpForm = () => {
     formState: { errors },
   } = methods;
 
-  const [signUp, { isSuccess, data, isError, error }] = useSignUpMutation();
-
+  const [signUp, { error, isError }] = useSignUpMutation();
   if (isError) {
     console.log(error);
     errorMessage = getQueryErrorMessage(error);
-  } else if (isSuccess) {
-    // TODO: redirect on login page
-    navigate('/login');
-    console.log(data);
   }
   const onSubmit = handleSubmit(async (data) => {
-    await signUp(data);
+    try {
+      await signUp(data).unwrap();
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   return (
@@ -58,7 +58,7 @@ const SignUpForm = () => {
               </button>
               <section>
                 {errorMessage ? (
-                  <p className="form_message error"> {errorMessage}</p>
+                  <p className="form_message error">{errorMessage}</p>
                 ) : null}
               </section>
             </div>

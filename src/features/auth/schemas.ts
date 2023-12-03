@@ -3,12 +3,12 @@ import { z } from 'zod';
 export const personAuthSchema = z.object({
   username: z
     .string()
-    .regex(new RegExp(/^[a-zA-Z0-9_\.]+$/), { message: 'Invalid characters' })
     .min(1, { message: 'Name is required' })
+    .regex(new RegExp(/^[a-zA-Z0-9_\.]+$/), { message: 'Invalid characters' })
     .max(100, { message: 'Name must contain max 100 characters' }),
   password: z
     .string()
-    .min(6, { message: 'Password must be atleast 6 characters' })
+    .min(6, { message: 'Password is required' })
     .max(100, { message: 'Password must contain max 100 characters' })
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).*$/, {
       message:

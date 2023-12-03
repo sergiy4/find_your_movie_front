@@ -68,7 +68,7 @@ export const setupFailedDeleteCollectionHandlers = () => {
 
 export const setupFailedUpdateCollectionHandlers = () => {
   server.use(
-    http.delete('/collections/:id', async ({ params }) => {
+    http.patch('/collections/:id', async ({ params }) => {
       console.log('DELETED');
       return HttpResponse.json({ message: 'server Error' }, { status: 500 });
     })
