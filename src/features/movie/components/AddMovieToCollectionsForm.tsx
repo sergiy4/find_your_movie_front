@@ -1,71 +1,64 @@
-import { useGetCurrentUserAllCollectionsQuery } from '../../collection/collectionSlice/collectionApi';
-import AddMovieToCollectionButton from './AddMovieToCollectionButton';
 import getQueryErrorMessage from '../../../utils/getQueryErrorMessage';
 import { useState } from 'react';
 import { DetailMovie, Movie } from '../types';
 import { getMovieObjForRequest } from '../../../utils/getMovieObjForRequest';
 import Modal from '../../../components/Modal';
 import CreateCollectionForm from '../../collection/components/CreateCollectionForm';
-
-interface AddMovieToCollectionFormProps {
+import CollectionList from './CollectionsListForForm';
+import useToastMessages from '../../../hooks/useToastMessage';
+import { useAddMovieToCollectionsMutation } from '../movieSlice/movieApi';
+import { QueryError } from '../../../utils/getQueryErrorMessage';
+type AddMovieToCollectionFormProps = {
   movie: DetailMovie | Movie;
-}
+};
 
 const AddMovieToCollectionForm = ({ movie }: AddMovieToCollectionFormProps) => {
-  console.log('FORM');
   let movieObj = getMovieObjForRequest(movie);
-  console.log(movieObj);
   const [selectedCollection, setSelectedCollection] = useState<string[]>([]);
-  let content;
-  let errorMessage;
+  const [notifySuccess, notifyError] = useToastMessages();
 
-  const { data, isError, isLoading, isSuccess, error, isFetching } =
-    useGetCurrentUserAllCollectionsQuery();
+  const [addMovie, { isLoading }] = useAddMovieToCollectionsMutation();
 
-  function handleCheckboxChange(
-    e: React.ChangeEvent<HTMLInputElement>,
-    collectionId: string
+  async function addMovieToCollection(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) {
-    if (e.target.checked) {
-      setSelectedCollection((prev) => [...prev, collectionId]);
-    } else {
-      setSelectedCollection((prev) => prev.filter((id) => id !== collectionId));
-    }
-  }
+    event.preventDefault();
+    try {
+      if (selectedCollection.length === 0) {
+        throw Error('no collection selected');
+      }
 
-  if (isFetching || isLoading) {
-  } else if (isError) {
-    errorMessage = getQueryErrorMessage(error);
-  } else if (isSuccess) {
-    if (data) {
-      console.log(data);
-      content = data.map((collection) => (
-        <div key={collection._id} className="form_item">
-          <label>{collection.name}</label>
-          <input
-            type="checkbox"
-            onChange={(e) => handleCheckboxChange(e, collection._id)}
-          ></input>
-        </div>
-      ));
-      console.log(content);
+      await addMovie({
+        movie: movieObj,
+        collectionIDs: selectedCollection,
+      }).unwrap();
+
+      notifySuccess('Movie added to collections');
+    } catch (err) {
+      console.log(err);
+
+      let errorMessage = getQueryErrorMessage(err as QueryError);
+      notifyError(errorMessage);
     }
   }
 
   return (
     <section className="around_form">
       <h2 className="title_form">ADD TO COLLECTION</h2>
-      <form className="add_movie_form" onSubmit={(e) => e.preventDefault()}>
-        <div className="overflow_form">{content}</div>
-      </form>
+      <CollectionList setSelectedCollection={setSelectedCollection} />
       <section className="buttons_section">
-        <AddMovieToCollectionButton
-          movie={movieObj}
-          selectedCollection={selectedCollection}
-        />
         <Modal label="CREATE COLLECTION">
           <CreateCollectionForm />
         </Modal>
+        <button
+          disabled={isLoading}
+          className="btn submit_btn"
+          onClick={(e) => {
+            addMovieToCollection(e);
+          }}
+        >
+          SUBMIT
+        </button>
       </section>
     </section>
   );

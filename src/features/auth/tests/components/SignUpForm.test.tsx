@@ -1,7 +1,6 @@
 import SignUpForm from '../../components/SignUpForm';
 import {
   setupAuthHandler,
-  setupFailedLoginHandler,
   setupSignUpFailedHandler,
 } from '../../msw/mswHandler';
 import { expect, describe, it, vi, beforeEach } from 'vitest';

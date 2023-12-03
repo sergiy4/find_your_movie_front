@@ -19,7 +19,7 @@ const MovieCard = ({
   const navigate = useNavigate();
   const { collectionID } = useParams();
   const baseImgUrl = import.meta.env.VITE_BASIC_IMG_URL;
-  const isUserOwnerColelction = userID === authUser ? true : false;
+  const isUserOwnerCollection = userID === authUser ? true : false;
 
   function navigateToMovie() {
     navigate(`/collections/${collectionID}/movies/${_id}`);
@@ -51,7 +51,7 @@ const MovieCard = ({
               />
             </Modal>
 
-            {isUserOwnerColelction ? (
+            {isUserOwnerCollection ? (
               <DeleteMovieButton
                 collectionID={collectionID || ''}
                 movieID={_id}
