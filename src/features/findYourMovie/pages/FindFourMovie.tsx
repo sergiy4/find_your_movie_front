@@ -9,15 +9,13 @@ import Loader from '../../../components/Loader';
 import { useEffect } from 'react';
 
 const FindYourMovie = () => {
-  const movieInStore = useSelector(selectFoundMovie);
   let content;
   const dispatch = useDispatch();
+  const movieInStore = useSelector(selectFoundMovie);
   const [
     findMovie,
     { isError, isLoading, isSuccess, isUninitialized, error, data },
   ] = useGetFoundMovieMutation();
-
-  console.log(movieInStore);
 
   if (isUninitialized) {
     if (Object.keys(movieInStore).length !== 0) {

@@ -30,9 +30,9 @@ const FoundMovie = ({
   ) => {
     navigate('/FYM/movie');
   };
-  console.log(`${baseUrl}${poster_path}`);
+
   return (
-    <article className="card">
+    <article className="card" data-testid="found_movie">
       <section className="card_img_part">
         <img
           src={`${baseUrl}${poster_path}`}

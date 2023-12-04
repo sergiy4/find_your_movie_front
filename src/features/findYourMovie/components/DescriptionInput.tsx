@@ -10,7 +10,7 @@ import {
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
 
-interface DescriptionInputProps {
+export interface DescriptionInputProps {
   isLoading: boolean;
   findMovie: MutationTrigger<
     MutationDefinition<
