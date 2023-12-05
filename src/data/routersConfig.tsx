@@ -8,12 +8,13 @@ import SignUp from '../features/auth/pages/SignUp';
 import Movie from '../features/movie/pages/Movie';
 import Layout from '../components/Layout';
 import FoundMoviePage from '../features/findYourMovie/pages/FoundMoviePage';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 export const routesConfig = [
   {
     path: '/',
     element: <Layout />,
-    // errorElement: <ErrorBoundary />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         index: true,
