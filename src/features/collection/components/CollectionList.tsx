@@ -12,9 +12,8 @@ import CreateCollectionForm from './CreateCollectionForm';
 
 const CollectionList = () => {
   let load;
-  let collections;
+  let content;
   let pagination;
-  let errorMessage;
 
   const [search, setSearch] = useSearchParamsState('search', '');
   const [page, setPage] = useSearchParamsState('page', '1');
@@ -26,13 +25,14 @@ const CollectionList = () => {
     load = <Loader />;
   } else if (isError) {
     console.log(error);
-    errorMessage = getQueryErrorMessage(error);
+    let errorMessage = getQueryErrorMessage(error);
+    content = <p className="error_message">{errorMessage}</p>;
     if (parseInt(page, 10) > 1) {
       setPage('1');
     }
   } else if (isSuccess) {
     if (currentData) {
-      collections = currentData.collections.map((collection) => (
+      content = currentData.collections.map((collection) => (
         <CollectionItem key={collection._id} {...collection} />
       ));
     }
@@ -73,7 +73,7 @@ const CollectionList = () => {
           <DebounceInput setSearch={setSearch} search={search} />
         </section>
         <section className="collections_page_container ">
-          <section className="collection_grid">{collections}</section>
+          <section className="collection_grid">{content}</section>
           {load}
           <section>{pagination}</section>
         </section>

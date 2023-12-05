@@ -1,58 +1,55 @@
-@use "../abstracts/" as *;
+@use '../abstracts/' as *;
 
 .fym_page {
-    min-height: 100%;
-    height: 100%;
-    //
-    @media (max-height: 700px) {
-        height: auto;
-    }
+  min-height: 100%;
+  height: 100%;
+  @media (max-height: 700px) {
+    height: auto;
+  }
+  @media (max-width: $tablet) {
+    @include display_flex(row, flex-end, flex-start);
+    height: auto;
+  }
+  background-color: $black-primary;
+  @include display_flex(row, flex-end, center);
+
+  .fym_container {
+    position: relative;
+
+    min-height: 80%;
+    margin-top: 80px;
+
+    @include display_flex(column, space-between, center);
+
     @media (max-width: $tablet) {
-        @include display_flex(row, flex-end, flex-start);
-        height: auto;
+      @include display_flex(column-reverse, flex-end, flex-start, 30px);
+      width: 100%;
     }
-    background-color: $black-primary;
-    @include display_flex(row, flex-end, center);
 
-    .fym_container {
-        position: relative;
+    // movie_card
+    .fym_card_place {
+      flex: 1;
+      @include display_flex(column, center, center);
+      align-self: center;
+      width: 80%;
+      @media (max-width: $tablet) {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+      article {
+        word-break: normal;
 
-        min-height: 80%;
-        margin-top: 80px !important;
-
-        @include display_flex(column, space-between, center);
-
-        @media (max-width: $tablet) {
-            @include display_flex(column-reverse, flex-end, flex-start, 30px);
-            width: 100%;
+        .instruction {
+          color: $white-primary;
+          font-family: $second-font;
+          @include adaptiveValue('font-size', 30, 25);
         }
-
-        // movie_card
-        .fym_card_place {
-            flex: 1;
-            @include display_flex(column, center, center);
-            align-self: center;
-            width: 80%;
-            // background-color: aqua;
-            // background-color: bisque;
-            @media (max-width: $tablet) {
-                width: 90%;
-            }
-            article {
-                word-break: normal;
-
-                .instruction {
-                    color: $white-primary;
-                    // font-family: $main-font;
-                    font-family: $second-font;
-                    @include adaptiveValue("font-size", 30, 25);
-                }
-            }
-        }
-
-        .fym_input_section {
-            @include display_flex(row, center, center);
-            width: 100%;
-        }
+      }
     }
+
+    .fym_input_section {
+      @include display_flex(row, center, center);
+      width: 100%;
+    }
+  }
 }

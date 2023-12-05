@@ -31,7 +31,7 @@ const CurrentCollection = () => {
     load = <Loader />;
   } else if (isError) {
     let errorMessage = getQueryErrorMessage(error);
-    content.current = <p>{errorMessage}</p>;
+    content.current = <p className="error_message">{errorMessage}</p>;
   } else if (isSuccess) {
     content.current = data?.movies?.map((movie) => (
       <MovieCard {...movie} userID={data.userID} key={movie._id} />
@@ -53,6 +53,7 @@ const CurrentCollection = () => {
         name={data.collectionName}
       />
     );
+
     title.current = data.collectionName;
   }
 

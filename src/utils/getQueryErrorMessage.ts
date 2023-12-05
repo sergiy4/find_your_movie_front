@@ -12,9 +12,9 @@ function getQueryErrorMessage(error: QueryError): string {
   console.log(error);
   if (error) {
     if (isCustomErrorType(error)) {
-      return `Error: ${error?.data?.message}`;
+      return ` ${error?.data?.message}`;
     } else if ('error' in error) {
-      return `Error: ${error?.error}`;
+      return ` ${error?.error}`;
     }
   }
   return 'Some error';

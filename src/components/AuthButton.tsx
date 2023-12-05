@@ -6,6 +6,7 @@ const AuthButton = () => {
   const loginState = getLoginState();
   const navigate = useNavigate();
 
+  console.log(loginState);
   if (location.pathname === '/login') {
     content = null;
   } else {
