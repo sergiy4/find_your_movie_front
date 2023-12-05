@@ -105,7 +105,7 @@ describe('FindYourMovie component error handle', () => {
       await user.click(searchButton);
     });
 
-    const errorMessage = await findByText('Error: Forbidden');
+    const errorMessage = await findByText('Forbidden');
     expect(errorMessage).toBeInTheDocument();
   });
 });

@@ -120,7 +120,7 @@ describe('PersistLogin component failed refresh request', () => {
     const { findByText } = renderWithProviders(
       <RouterProvider router={router} />
     );
-    const errorMessage = await findByText('Error: Unauthorize');
+    const errorMessage = await findByText('Unauthorize');
 
     expect(errorMessage).toBeInTheDocument();
   });

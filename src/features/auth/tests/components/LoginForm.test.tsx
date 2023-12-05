@@ -10,9 +10,8 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 
-const mockedUsedNavigate = vi.fn(() => {
-  console.log('NAVIGATE');
-});
+const mockedUsedNavigate = vi.fn(() => {});
+
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual<typeof import('react-router-dom')>(
     'react-router-dom'
@@ -161,7 +160,7 @@ describe('LoginForm Component handle error login', () => {
       await user.click(LoginButton);
     });
 
-    const errorMessage = getByText('Error: invalid password');
+    const errorMessage = getByText('invalid password');
     expect(errorMessage).toBeInTheDocument();
   });
 });

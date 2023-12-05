@@ -28,8 +28,6 @@ const RandomCollectionList = () => {
       setPage('1');
     }
   } else if (isSuccess) {
-    console.log(currentData);
-
     if (currentData) {
       content = currentData.collections.map((collection) => (
         <CollectionItem key={collection._id} {...collection} />

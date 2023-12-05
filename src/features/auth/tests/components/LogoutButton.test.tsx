@@ -11,9 +11,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 import { toast } from 'react-toastify';
 
-const mockedUsedNavigate = vi.fn(() => {
-  console.log('NAVIGATE');
-});
+const mockedUsedNavigate = vi.fn(() => {});
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual<typeof import('react-router-dom')>(
     'react-router-dom'

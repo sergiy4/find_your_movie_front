@@ -46,7 +46,6 @@ describe('Collection component', () => {
   });
 
   it('display Collection data', async () => {
-    // const { findByTestId, unmount } = render(TestedElement1());
     const { findByTestId, unmount } = renderWithProviders(
       <MemoryRouter initialEntries={[`/collection/12d3o23`]}>
         <CurrentCollection />
@@ -94,7 +93,7 @@ describe('Collection component', () => {
       </MemoryRouter>
     );
 
-    expect(await findByText('Error: FORBIDDEN')).toBeDefined();
+    expect(await findByText('FORBIDDEN')).toBeDefined();
     unmount();
   });
 });

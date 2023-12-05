@@ -1,10 +1,8 @@
 import RandomCollectionList from '../components/RandomCollectionList';
-import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import renderWithProviders from '../../../utils/test-utils';
 import { setupCollectionHandler } from '../msw/mswHandler';
-import { cleanup, waitForElementToBeRemoved } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { server } from '../../../../tests/server';
+import { waitForElementToBeRemoved } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 

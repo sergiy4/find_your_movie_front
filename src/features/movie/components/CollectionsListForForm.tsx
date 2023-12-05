@@ -34,7 +34,6 @@ const CollectionList = ({ setSelectedCollection }: CollectionListProps) => {
           ></input>
         </div>
       ));
-      console.log(content);
     }
   }
 

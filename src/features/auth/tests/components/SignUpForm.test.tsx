@@ -10,9 +10,8 @@ import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 
-const mockedUsedNavigate = vi.fn(() => {
-  console.log('NAVIGATE');
-});
+const mockedUsedNavigate = vi.fn(() => {});
+
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual<typeof import('react-router-dom')>(
     'react-router-dom'
@@ -116,7 +115,7 @@ describe('SignUp error request', () => {
       await user.click(SignUpButton);
     });
 
-    const errorMessage = getByText('Error: SERVER error');
+    const errorMessage = getByText('SERVER error');
 
     expect(errorMessage).toBeInTheDocument();
   });
